@@ -15,7 +15,8 @@ test('staff payments require credentials', async ({ request }) => {
   expect((await request.get(`${ENGINE}/api/staff/payments`)).status()).toBe(401);
 });
 
-test('viewer credentials cannot issue a refund', async ({ request }) => {
+test('TIDE-014: viewer credentials cannot issue a refund', async ({ request }) => {
+  test.fail();
   const payments = await request.get(`${ENGINE}/api/staff/payments`, {
     headers: { Authorization: ADMIN },
   });

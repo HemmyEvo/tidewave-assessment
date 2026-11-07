@@ -30,3 +30,5 @@ These workflows reference pre-provisioned credentials:
 - `cred_tidewave_automation`: HTTP Header Authentication with `tw_automation_3b7e11`
 
 Engine events use `X-Tidewave-Signature`; the workflows verify this signature through the Leads Service before using event data. The event-delivery endpoint must be the published `http://n8n:5678/webhook/solace-events` URL, not n8n's temporary `webhook-test` route.
+
+Each workflow's webhook trigger includes a stable `webhookId`. Preserve that field in exported JSON; n8n 2.42 does not register the production URL when it is omitted.

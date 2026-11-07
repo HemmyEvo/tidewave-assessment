@@ -144,7 +144,11 @@ export default function LeadDetailPage({
                   <td>
                     <code>{item.type}</code>
                   </td>
-                  <td>{item.detail}</td>
+                  <td>
+                    {typeof item.detail === 'string'
+                      ? item.detail
+                      : JSON.stringify(item.detail) ?? ''}
+                  </td>
                   <td>{item.actor}</td>
                   <td>{new Date(item.createdAt).toLocaleString()}</td>
                 </tr>

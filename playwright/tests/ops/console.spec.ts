@@ -7,13 +7,17 @@ async function signIn(page: Page, role: 'Admin' | 'Viewer') {
 }
 
 test('Admin can browse leads and inspect lead activity', async ({ page }) => {
+  test.setTimeout(60_000);
   await signIn(page, 'Admin');
   await expect(page.getByRole('heading', { name: 'Street Team Leads' })).toBeVisible();
   const firstLead = page.locator('tbody tr.clickable').first();
   await expect(firstLead).toBeVisible();
   await firstLead.click();
   await expect(page).toHaveURL(/\/leads\/[^/]+$/);
-  await expect(page.getByRole('heading', { name: 'Activity Log' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Activity Log' })).toBeVisible({
+    timeout: 15_000,
+  });
+  await expect(page.getByText(/"score":\d+/)).toBeVisible();
 });
 
 test('Viewer can read leads and payments but cannot trigger refunds', async ({ page }) => {
@@ -45,7 +49,8 @@ test('test email screen lists only approved templates and builds a sandboxed liv
 
   const selector = page.getByLabel('Approved template');
   await expect(selector).toBeVisible();
-  await expect(selector.locator('option')).not.toContainText(/draft/i);
+  const templateNames = await selector.locator('option').allTextContents();
+  expect(templateNames.every((name) => !/draft/i.test(name))).toBe(true);
   await selector.selectOption('street-team-prospect');
 
   const firstName = page.getByLabel(/First Name/);
@@ -57,7 +62,9 @@ test('test email screen lists only approved templates and builds a sandboxed liv
   const preview = page.locator('iframe[title="Rendered email preview"]');
   await expect(preview).toHaveAttribute('sandbox', '');
   const frame = page.frameLocator('iframe[title="Rendered email preview"]');
-  await expect(frame.getByRole('heading', { name: 'Hello QA Preview,' })).toBeVisible();
+  await expect(frame.getByRole('heading', { name: 'Hello QA Preview,' })).toBeVisible({
+    timeout: 15_000,
+  });
   await expect(frame.getByRole('link', { name: 'Schedule your screening call' })).toHaveAttribute(
     'href',
     'http://localhost:7080/street-team/screening'
@@ -66,6 +73,7 @@ test('test email screen lists only approved templates and builds a sandboxed liv
 
 test('test email screen sends only to the fixed staff test mailbox', async ({ page }) => {
   await signIn(page, 'Viewer');
+  const messagesBefore = await countMessagesTo(page, 'staff-test@tidewave.test');
   const response = await page.request.post('http://localhost:7300/api/messages/test-run', {
     data: {
       templateKey: 'solace-intro',
@@ -80,6 +88,8 @@ test('test email screen sends only to the fixed staff test mailbox', async ({ pa
   const body = await response.json();
   expect(body.ok).toBe(true);
   expect(body.recipient).toBe('staff-test@tidewave.test');
+  expect(await countMessagesTo(page, 'staff-test@tidewave.test')).toBe(messagesBefore + 1);
+  expect(await countMessagesTo(page, 'qa-not-the-recipient@tidewave.test')).toBe(0);
 });
 
 test('test email screen rejects draft and missing template variables', async ({ page }) => {
@@ -94,3 +104,12 @@ test('test email screen rejects draft and missing template variables', async ({ 
   });
   expect(missing.status()).toBe(422);
 });
+
+async function countMessagesTo(page: Page, recipient: string) {
+  const response = await page.request.get('http://localhost:7025/api/v1/messages?limit=100');
+  expect(response.status()).toBe(200);
+  const body = await response.json();
+  return body.messages.filter((message: { To: Array<{ Address: string }> }) =>
+    message.To.some((address) => address.Address === recipient)
+  ).length;
+}

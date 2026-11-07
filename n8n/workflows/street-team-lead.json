@@ -1,7 +1,6 @@
 {
   "id": "wf_street_team_lead",
   "name": "Street Team Lead Application",
-  "active": false,
   "nodes": [
     {
       "parameters": {
@@ -12,8 +11,12 @@
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
-      "position": [220, 300],
+      "position": [
+        220,
+        300
+      ],
       "id": "01948b81-0001-7000-8000-000000000001",
+      "webhookId": "8640ac03-bb15-43f7-92c1-47a9e890b57b",
       "name": "Webhook"
     },
     {
@@ -34,14 +37,14 @@
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ JSON.stringify({ event: $('Webhook').first().json.body }) }}",
-        "options": {
-          "maxTries": 5,
-          "waitBetweenTries": 1000
-        }
+        "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [440, 300],
+      "position": [
+        440,
+        300
+      ],
       "id": "01948b81-0001-7000-8000-000000000002",
       "name": "Verify Signed Event",
       "credentials": {
@@ -50,7 +53,10 @@
           "name": "Tidewave Automation"
         }
       },
-      "notes": "Reject events that do not match the engine HMAC signature."
+      "notes": "Reject events that do not match the engine HMAC signature.",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 1000
     },
     {
       "parameters": {
@@ -58,7 +64,10 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [660, 300],
+      "position": [
+        660,
+        300
+      ],
       "id": "01948b81-0001-7000-8000-000000000003",
       "name": "Check Duplicate Application",
       "notes": "One screening email per lead ID, including event redeliveries."
@@ -90,7 +99,10 @@
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [880, 300],
+      "position": [
+        880,
+        300
+      ],
       "id": "01948b81-0001-7000-8000-000000000004",
       "name": "Already Delivered"
     },
@@ -102,7 +114,10 @@
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [1100, 180],
+      "position": [
+        1100,
+        180
+      ],
       "id": "01948b81-0001-7000-8000-000000000005",
       "name": "Respond Duplicate"
     },
@@ -112,14 +127,14 @@
         "url": "={{ 'http://leads:8081/leads/' + $('Check Duplicate Application').first().json.leadId }}",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "httpHeaderAuth",
-        "options": {
-          "maxTries": 5,
-          "waitBetweenTries": 1000
-        }
+        "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1100, 420],
+      "position": [
+        1100,
+        420
+      ],
       "id": "01948b81-0001-7000-8000-000000000006",
       "name": "Get Lead",
       "credentials": {
@@ -127,7 +142,10 @@
           "id": "cred_tidewave_automation",
           "name": "Tidewave Automation"
         }
-      }
+      },
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 1000
     },
     {
       "parameters": {
@@ -135,7 +153,10 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1320, 420],
+      "position": [
+        1320,
+        420
+      ],
       "id": "01948b81-0001-7000-8000-000000000007",
       "name": "Check Screening Eligibility",
       "notes": "Only consented screening invitations for test-domain addresses may send."
@@ -167,7 +188,10 @@
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [1540, 420],
+      "position": [
+        1540,
+        420
+      ],
       "id": "01948b81-0001-7000-8000-000000000008",
       "name": "Eligible for Screening"
     },
@@ -180,14 +204,14 @@
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ JSON.stringify({ variables: { firstName: $('Check Screening Eligibility').first().json.firstName, nextStepText: 'Please choose a convenient time for your initial screening call.', screeningUrl: 'http://localhost:7080/street-team/screening' }, test: false }) }}",
-        "options": {
-          "maxTries": 5,
-          "waitBetweenTries": 1000
-        }
+        "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1760, 360],
+      "position": [
+        1760,
+        360
+      ],
       "id": "01948b81-0001-7000-8000-000000000009",
       "name": "Render Screening Invitation",
       "credentials": {
@@ -195,7 +219,10 @@
           "id": "cred_tidewave_automation",
           "name": "Tidewave Automation"
         }
-      }
+      },
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 1000
     },
     {
       "parameters": {
@@ -207,7 +234,10 @@
       },
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
-      "position": [1980, 360],
+      "position": [
+        1980,
+        360
+      ],
       "id": "01948b81-0001-7000-8000-000000000010",
       "name": "Send Screening Invitation",
       "retryOnFail": true,
@@ -226,7 +256,10 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [2200, 360],
+      "position": [
+        2200,
+        360
+      ],
       "id": "01948b81-0001-7000-8000-000000000011",
       "name": "Mark Application Delivered"
     },
@@ -239,14 +272,14 @@
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ JSON.stringify({ type: 'email_sent', detail: { eventId: $json.eventId, action: 'screening_invitation' } }) }}",
-        "options": {
-          "maxTries": 5,
-          "waitBetweenTries": 1000
-        }
+        "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [2420, 360],
+      "position": [
+        2420,
+        360
+      ],
       "id": "01948b81-0001-7000-8000-000000000012",
       "name": "Record Email Activity",
       "credentials": {
@@ -254,7 +287,10 @@
           "id": "cred_tidewave_automation",
           "name": "Tidewave Automation"
         }
-      }
+      },
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 1000
     },
     {
       "parameters": {
@@ -264,7 +300,10 @@
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [2640, 360],
+      "position": [
+        2640,
+        360
+      ],
       "id": "01948b81-0001-7000-8000-000000000013",
       "name": "Respond Delivered"
     },
@@ -276,54 +315,154 @@
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [1760, 560],
+      "position": [
+        1760,
+        560
+      ],
       "id": "01948b81-0001-7000-8000-000000000014",
       "name": "Respond Not Eligible"
     }
   ],
   "connections": {
     "Webhook": {
-      "main": [[{ "node": "Verify Signed Event", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Verify Signed Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Verify Signed Event": {
-      "main": [[{ "node": "Check Duplicate Application", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Check Duplicate Application",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Check Duplicate Application": {
-      "main": [[{ "node": "Already Delivered", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Already Delivered",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Already Delivered": {
       "main": [
-        [{ "node": "Respond Duplicate", "type": "main", "index": 0 }],
-        [{ "node": "Get Lead", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Respond Duplicate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Get Lead": {
-      "main": [[{ "node": "Check Screening Eligibility", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Check Screening Eligibility",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Check Screening Eligibility": {
-      "main": [[{ "node": "Eligible for Screening", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Eligible for Screening",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Eligible for Screening": {
       "main": [
-        [{ "node": "Render Screening Invitation", "type": "main", "index": 0 }],
-        [{ "node": "Respond Not Eligible", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Render Screening Invitation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Not Eligible",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Render Screening Invitation": {
-      "main": [[{ "node": "Send Screening Invitation", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Send Screening Invitation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Send Screening Invitation": {
-      "main": [[{ "node": "Mark Application Delivered", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Mark Application Delivered",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Mark Application Delivered": {
-      "main": [[{ "node": "Record Email Activity", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Record Email Activity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Record Email Activity": {
-      "main": [[{ "node": "Respond Delivered", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Respond Delivered",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
     "executionOrder": "v1",
     "saveDataSuccessExecution": "none"
-  }
+  },
+  "active": false
 }

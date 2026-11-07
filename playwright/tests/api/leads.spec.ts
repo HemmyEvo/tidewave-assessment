@@ -97,11 +97,12 @@ test.describe('lead scoring boundaries', () => {
 
 test('TIDE-004: duplicate detection treats email addresses case-insensitively', async () => {
   const email = `qa-case-${randomUUID()}@tidewave.test`;
-  const original = await createLead({ email, phone: '+2348000004105' });
+  const original = await createLead({ email });
   expect(original.status()).toBe(201);
   const originalLead = await original.json();
+  expect(originalLead.status).not.toBe('duplicate');
 
-  const duplicate = await createLead({ email: email.toUpperCase(), phone: '+2348000004106' });
+  const duplicate = await createLead({ email: email.toUpperCase() });
   expect(duplicate.status()).toBe(201);
   const duplicateLead = await duplicate.json();
   expect(duplicateLead.status).toBe('duplicate');

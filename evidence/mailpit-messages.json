@@ -1,12 +1,412 @@
 {
-  "total": 3,
-  "unread": 3,
-  "count": 3,
-  "messages_count": 3,
-  "messages_unread": 3,
+  "total": 19,
+  "unread": 19,
+  "count": 19,
+  "messages_count": 19,
+  "messages_unread": 19,
   "start": 0,
   "tags": [],
   "messages": [
+    {
+      "ID": "4GrUlgy6VOdIGvRPmaeZze",
+      "MessageID": "7de7789c-d7d3-703f-5705-db7cad5841f0@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "qa-58c2b74602cc@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Tidewave Street Team - Next Steps",
+      "Created": "2026-11-07T16:51:11.193Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2840,
+      "Attachments": 0,
+      "Snippet": "Your Tidewave Street Team application: the next step is a screening call. Hello QA, Thank you for applying to the Tidewave Street Team. Please choose a convenient time for your initial screening call...."
+    },
+    {
+      "ID": "6GlKveDDU0m2R5Y2CJFn98",
+      "MessageID": "0dfb77f3-d18b-ea97-22d6-a2780e272640@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "qa-1625026eca53@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Tidewave Street Team - Next Steps",
+      "Created": "2026-11-07T16:51:09.548Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2840,
+      "Attachments": 0,
+      "Snippet": "Your Tidewave Street Team application: the next step is a screening call. Hello QA, Thank you for applying to the Tidewave Street Team. Please choose a convenient time for your initial screening call...."
+    },
+    {
+      "ID": "3uiMlpuOlbEP4J8KVKEb9v",
+      "MessageID": "a6380a69-6fdc-bae6-e365-6745dccfae9d@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "qa-ed608e5bf2fa@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Tidewave Street Team - Next Steps",
+      "Created": "2026-11-07T16:51:06.912Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2840,
+      "Attachments": 0,
+      "Snippet": "Your Tidewave Street Team application: the next step is a screening call. Hello QA, Thank you for applying to the Tidewave Street Team. Please choose a convenient time for your initial screening call...."
+    },
+    {
+      "ID": "1oiwQwKytmMmQPsaSGztp0",
+      "MessageID": "df4e5daf-18e9-c322-0583-085dfe7a278e@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "staff-test@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "[TEST] Welcome to Solace Avenue",
+      "Created": "2026-11-07T16:51:01.329Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2817,
+      "Attachments": 0,
+      "Snippet": "Discover Solace Avenue's Harmattan Sessions campaign. Backing is entirely voluntary. Hi QA Staff, Thanks for choosing to hear more about Solace Avenue. We're sharing the Harmattan Sessions campaign wi..."
+    },
+    {
+      "ID": "6jEjfjyRY0th41hUBt6f44",
+      "MessageID": "3d6926c0-5bd6-d551-ea23-8fb13ea60136@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "ada.obi@example.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Your Solace Avenue Backing is Confirmed",
+      "Created": "2026-11-07T16:50:33.07Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 1277,
+      "Attachments": 0,
+      "Snippet": "Thanks Ada, We received your backing of ₦2,000.00. Your current backing level is now Listener. View account Cheers, Tidewave Music --- This email was sent automatically with n8n"
+    },
+    {
+      "ID": "4rOwjcvG19p0DGQBGqgpye",
+      "MessageID": "5a974e46-a6c5-6def-62d8-751c9f17e905@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "qa-optin-1794070213368@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Welcome to Solace Avenue",
+      "Created": "2026-11-07T16:50:18.35Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2837,
+      "Attachments": 0,
+      "Snippet": "Discover Solace Avenue's Harmattan Sessions campaign. Backing is entirely voluntary. Hi QA Listener, Thanks for choosing to hear more about Solace Avenue. We're sharing the Harmattan Sessions campaign..."
+    },
+    {
+      "ID": "6XXLrFm0sg9KXsp6KJfNk1",
+      "MessageID": "ad877e1c-8a56-dffb-a2a6-9013050f7f51@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "staff-test@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "[TEST] Welcome to Solace Avenue",
+      "Created": "2026-11-07T16:47:27.12Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2761,
+      "Attachments": 0,
+      "Snippet": "Discover Solace Avenue's Harmattan Sessions campaign. Backing is entirely voluntary. Hi QA Staff, Thanks for choosing to hear more about Solace Avenue. We're sharing the Harmattan Sessions campaign wi..."
+    },
+    {
+      "ID": "4aPRebAMUlbYpgjLuHjehJ",
+      "MessageID": "851b8e75-cf3c-bd23-7568-86528e484ba2@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "staff-test@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "[TEST] Welcome to Solace Avenue",
+      "Created": "2026-11-07T16:44:23.752Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2761,
+      "Attachments": 0,
+      "Snippet": "Discover Solace Avenue's Harmattan Sessions campaign. Backing is entirely voluntary. Hi QA Staff, Thanks for choosing to hear more about Solace Avenue. We're sharing the Harmattan Sessions campaign wi..."
+    },
+    {
+      "ID": "0Og8othQn3xlzGQsrr6Ycm",
+      "MessageID": "22420be9-1d9e-5e3d-2f39-2285ac44189b@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "staff-test@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "[TEST] Welcome to Solace Avenue",
+      "Created": "2026-11-07T16:40:06.912Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2761,
+      "Attachments": 0,
+      "Snippet": "Discover Solace Avenue's Harmattan Sessions campaign. Backing is entirely voluntary. Hi QA Staff, Thanks for choosing to hear more about Solace Avenue. We're sharing the Harmattan Sessions campaign wi..."
+    },
+    {
+      "ID": "15BrUrCK1rvExtRhSNSUEx",
+      "MessageID": "60acb305-cab0-a3fa-ee1c-7f999a368f67@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "staff-test@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "[TEST] Welcome to Solace Avenue",
+      "Created": "2026-11-07T16:35:36.44Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2761,
+      "Attachments": 0,
+      "Snippet": "Discover Solace Avenue's Harmattan Sessions campaign. Backing is entirely voluntary. Hi QA Staff, Thanks for choosing to hear more about Solace Avenue. We're sharing the Harmattan Sessions campaign wi..."
+    },
+    {
+      "ID": "2peAOFjWYXIw9kGDOLZuSn",
+      "MessageID": "b4128184-1009-7c49-41fd-b8c056d9253d@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "staff-test@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "[TEST] Welcome to Solace Avenue",
+      "Created": "2026-11-07T16:32:23.917Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2761,
+      "Attachments": 0,
+      "Snippet": "Discover Solace Avenue's Harmattan Sessions campaign. Backing is entirely voluntary. Hi QA Staff, Thanks for choosing to hear more about Solace Avenue. We're sharing the Harmattan Sessions campaign wi..."
+    },
+    {
+      "ID": "33ZyI4wO1nFs3VqEZxq3S1",
+      "MessageID": "9af7a75f-56cf-a441-9a84-5f427efd7c51@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "ada.obi@example.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Your Solace Avenue Backing is Confirmed",
+      "Created": "2026-11-07T16:25:09.185Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 1277,
+      "Attachments": 0,
+      "Snippet": "Thanks Ada, We received your backing of ₦2,000.00. Your current backing level is now Listener. View account Cheers, Tidewave Music --- This email was sent automatically with n8n"
+    },
+    {
+      "ID": "7ib8u7lp0YHFwZTqSL2yLE",
+      "MessageID": "df2ec1f6-5052-0c55-f7cc-a3f374c992d8@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "ada.obi@example.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Your Solace Avenue Backing is Confirmed",
+      "Created": "2026-11-07T16:23:51.698Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 1277,
+      "Attachments": 0,
+      "Snippet": "Thanks Ada, We received your backing of ₦2,000.00. Your current backing level is now Listener. View account Cheers, Tidewave Music --- This email was sent automatically with n8n"
+    },
+    {
+      "ID": "67RKwNfhc5t6cjAYTsGOre",
+      "MessageID": "9e78a522-8a33-2214-3bd9-66798b1c5671@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "qa-optin-1794067629997@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Welcome to Solace Avenue",
+      "Created": "2026-11-07T16:19:56.659Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2781,
+      "Attachments": 0,
+      "Snippet": "Discover Solace Avenue's Harmattan Sessions campaign. Backing is entirely voluntary. Hi QA Listener, Thanks for choosing to hear more about Solace Avenue. We're sharing the Harmattan Sessions campaign..."
+    },
+    {
+      "ID": "2FfZ7MP0wHejcs0K66rcN6",
+      "MessageID": "0118a0d1-2365-8ae4-482a-a48cc71b295f@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "qa-e2e-1794067607681@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Welcome to Solace Avenue",
+      "Created": "2026-11-07T16:19:36.862Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2772,
+      "Attachments": 0,
+      "Snippet": "Discover Solace Avenue's Harmattan Sessions campaign. Backing is entirely voluntary. Hi QA E2E, Thanks for choosing to hear more about Solace Avenue. We're sharing the Harmattan Sessions campaign with..."
+    },
+    {
+      "ID": "2ALjMOmwECMeN80RjrxggQ",
+      "MessageID": "e94d896f-044b-6249-f9e8-fabf559a1139@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "qa-optin-1794065650688@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Welcome to Solace Avenue",
+      "Created": "2026-11-07T16:17:04.966Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 2781,
+      "Attachments": 0,
+      "Snippet": "Discover Solace Avenue's Harmattan Sessions campaign. Backing is entirely voluntary. Hi QA Listener, Thanks for choosing to hear more about Solace Avenue. We're sharing the Harmattan Sessions campaign..."
+    },
     {
       "ID": "2RQT31vueHUSYUHGlyfiVu",
       "MessageID": "ae2b988d-c83d-96dd-9c01-ff5160c8bc55@tidewave.test",

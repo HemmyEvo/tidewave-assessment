@@ -3,7 +3,7 @@
 **Area**: Engine / n8n  
 **Severity**: High  
 **Environment**: Starter build, Solace opt-in flow  
-**Retest Status**: Open
+**Retest Status**: Fixed (runtime verified)
 
 ## Summary
 
@@ -28,7 +28,10 @@ The engine posted to `http://n8n:5678/webhook-test/solace-events`; the outbox en
 - Opt-in request ID: `req_f840940df4b6d7c439` (`POST /optin`, HTTP 303).
 - QA database: opt-in `opt_f4a19b0339a4d95e4b`; event `evt_48ff6b083e6cbd8789`.
 - The workflow is published at `POST /webhook/solace-events`.
+- The engine now targets `http://n8n:5678/webhook/solace-events`.
+- A new event was delivered with HTTP 200 after five attempts; Mailpit received the corresponding welcome email.
+- Replaying that event returned `ok: true` and left the recipient's Mailpit message count at one.
 
 ## Notes
 
-The workflow JSON has been repaired, but the live engine setting has not yet been changed and delivery is still failing.
+The workflow JSON includes stable webhook IDs required for n8n 2.42 to register the published production URLs. The original failed event remains in the outbox as historical evidence; a subsequent event and replay verified the repaired delivery path.

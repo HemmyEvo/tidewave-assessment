@@ -3,21 +3,119 @@
     "environment": "seed_7b24559a",
     "events": [
       {
-        "attempts": 4,
+        "attempts": 6,
         "deliveredAt": "",
         "id": "evt_48ff6b083e6cbd8789",
-        "lastStatus": "404",
+        "lastStatus": "error: Post \"http://n8n:5678/webhook/solace-events\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
         "type": "optin.created"
       },
       {
-        "attempts": 3,
-        "deliveredAt": "",
+        "attempts": 6,
+        "deliveredAt": "2026-11-07T16:18:53",
         "id": "evt_18f86983588ff109e5",
-        "lastStatus": "404",
+        "lastStatus": "200",
+        "type": "payment.updated"
+      },
+      {
+        "attempts": 1,
+        "deliveredAt": "2026-11-07T16:20:55",
+        "id": "evt_3ee4d149864851420c",
+        "lastStatus": "200",
+        "type": "optin.created"
+      },
+      {
+        "attempts": 5,
+        "deliveredAt": "2026-11-07T16:19:56",
+        "id": "evt_783d3b76c4517a7e2b",
+        "lastStatus": "200",
+        "type": "optin.created"
+      },
+      {
+        "attempts": 5,
+        "deliveredAt": "2026-11-07T16:20:32",
+        "id": "evt_49d0e7ba663d15fb76",
+        "lastStatus": "200",
+        "type": "payment.updated"
+      },
+      {
+        "attempts": 1,
+        "deliveredAt": "2026-11-07T16:22:26",
+        "id": "evt_4a6066c328dad9159f",
+        "lastStatus": "200",
+        "type": "payment.updated"
+      },
+      {
+        "attempts": 1,
+        "deliveredAt": "2026-11-07T16:23:51",
+        "id": "evt_135f51f434c33fb808",
+        "lastStatus": "200",
+        "type": "payment.updated"
+      },
+      {
+        "attempts": 1,
+        "deliveredAt": "2026-11-07T16:25:09",
+        "id": "evt_8e4f608abfe18233af",
+        "lastStatus": "200",
+        "type": "payment.updated"
+      },
+      {
+        "attempts": 1,
+        "deliveredAt": "2026-11-07T16:25:15",
+        "id": "evt_865059eabf775d0859",
+        "lastStatus": "200",
+        "type": "payment.updated"
+      },
+      {
+        "attempts": 1,
+        "deliveredAt": "2026-11-07T16:50:18",
+        "id": "evt_cccaa060d4f2844742",
+        "lastStatus": "200",
+        "type": "optin.created"
+      },
+      {
+        "attempts": 1,
+        "deliveredAt": "2026-11-07T16:50:33",
+        "id": "evt_3e245497935cbd82ae",
+        "lastStatus": "200",
+        "type": "payment.updated"
+      },
+      {
+        "attempts": 1,
+        "deliveredAt": "2026-11-07T16:50:38",
+        "id": "evt_76484b337e25bbce15",
+        "lastStatus": "200",
+        "type": "payment.updated"
+      },
+      {
+        "attempts": 1,
+        "deliveredAt": "2026-11-07T16:50:53",
+        "id": "evt_d81ad8265ea3e903a5",
+        "lastStatus": "200",
+        "type": "payment.updated"
+      },
+      {
+        "attempts": 1,
+        "deliveredAt": "2026-11-07T16:52:35",
+        "id": "evt_9a00c1e9cbb5384669",
+        "lastStatus": "200",
+        "type": "payment.updated"
+      },
+      {
+        "attempts": 1,
+        "deliveredAt": "2026-11-07T16:53:47",
+        "id": "evt_23a96b7ce061bfeba0",
+        "lastStatus": "200",
+        "type": "payment.updated"
+      },
+      {
+        "attempts": 2,
+        "deliveredAt": "",
+        "id": "evt_d40873772f166372f5",
+        "lastStatus": "500",
         "type": "payment.updated"
       }
     ],
-    "generatedAt": "2026-11-07T15:37:22Z",
+    "generatedAt": "2026-11-07T16:58:02Z",
     "requests": [
       {
         "ts": "2026-11-07T15:20:21.808326Z",
@@ -594,8 +692,2033 @@
         "path": "/dashboard",
         "status": 200,
         "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:37:22.489497Z",
+        "server": "engine",
+        "requestId": "req_5bff9a67446ab41718",
+        "method": "GET",
+        "path": "/__tools/evidence",
+        "status": 200,
+        "actor": "tools"
+      },
+      {
+        "ts": "2026-11-07T15:40:39.75595Z",
+        "server": "engine",
+        "requestId": "req_291c62626142223e55",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:41:33.55657Z",
+        "server": "engine",
+        "requestId": "req_3453ab07f5910f05bf",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:43:18.5287Z",
+        "server": "engine",
+        "requestId": "req_862270e72d502daed6",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_5b8eaf3becc4e0b052",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T15:43:18.596686Z",
+        "server": "engine",
+        "requestId": "req_dbdcd1885680a153cb",
+        "method": "GET",
+        "path": "/api/automation/participants/par_dayo_646179",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T15:43:18.609276Z",
+        "server": "engine",
+        "requestId": "req_8d956329a6eab75417",
+        "method": "GET",
+        "path": "/api/automation/participants/par_ada_616461",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T15:43:18.694224Z",
+        "server": "engine",
+        "requestId": "req_50dcae1817d67e0520",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_7fda6491c11ed3865a",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T15:55:20.314475Z",
+        "server": "engine",
+        "requestId": "req_ca936f81167cbbdc2a",
+        "method": "GET",
+        "path": "/campaigns/coastline-ep",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:55:23.191701Z",
+        "server": "engine",
+        "requestId": "req_6ca3710ecad80f755c",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:55:24.315055Z",
+        "server": "engine",
+        "requestId": "req_ec502b4bbf98e71a4a",
+        "method": "GET",
+        "path": "/artist/solace-avenue?done=1",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:57:06.248665Z",
+        "server": "engine",
+        "requestId": "req_188ea0561061984e5f",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:57:07.38735Z",
+        "server": "engine",
+        "requestId": "req_e4645e2536ac8c3ec6",
+        "method": "GET",
+        "path": "/artist/solace-avenue?done=1",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:57:55.43564Z",
+        "server": "engine",
+        "requestId": "req_6d76bfdd4527d25b06",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:57:56.590243Z",
+        "server": "engine",
+        "requestId": "req_5bb1b8e841bb8f0084",
+        "method": "GET",
+        "path": "/artist/solace-avenue?done=1",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:58:41.774061Z",
+        "server": "engine",
+        "requestId": "req_3f54f38fb323a70ffd",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:59:10.367149Z",
+        "server": "engine",
+        "requestId": "req_3e7ddfb5cef3d7a617",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:04:40.465737Z",
+        "server": "engine",
+        "requestId": "req_f64c4808ae2e0786d6",
+        "method": "GET",
+        "path": "/api/docs",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:04:56.402982Z",
+        "server": "engine",
+        "requestId": "req_f71b1a6a1f18ad8936",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_7fda6491c11ed3865a",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:04:56.454988Z",
+        "server": "engine",
+        "requestId": "req_b611972abe9025ea85",
+        "method": "GET",
+        "path": "/api/staff/settings",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:05:12.186776Z",
+        "server": "engine",
+        "requestId": "req_53a21011d02756eeb0",
+        "method": "PUT",
+        "path": "/api/staff/settings",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:05:12.235907Z",
+        "server": "engine",
+        "requestId": "req_bcb4ab9795366cf8a1",
+        "method": "GET",
+        "path": "/api/staff/settings",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:06:47.748852Z",
+        "server": "engine",
+        "requestId": "req_19d51898d4aa5e8586",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:06:48.239813Z",
+        "server": "engine",
+        "requestId": "req_dc633ec49bbd6ce26b",
+        "method": "POST",
+        "path": "/optin",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:06:48.273335Z",
+        "server": "engine",
+        "requestId": "req_28aada902341c8ab0b",
+        "method": "GET",
+        "path": "/artist/solace-avenue?done=1",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:06:56.229519Z",
+        "server": "engine",
+        "requestId": "req_083a15e8fc79d89a29",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:06:57.063268Z",
+        "server": "engine",
+        "requestId": "req_ac4e64581c7f000c65",
+        "method": "GET",
+        "path": "/",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:03.121497Z",
+        "server": "engine",
+        "requestId": "req_2a72a6b0ae74589cf4",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:04.73795Z",
+        "server": "engine",
+        "requestId": "req_5523cd001ae0499077",
+        "method": "GET",
+        "path": "/artist/solace-avenue?done=1",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:06.984896Z",
+        "server": "engine",
+        "requestId": "req_3cd5b180324970a68f",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:10.063429Z",
+        "server": "engine",
+        "requestId": "req_35196740d676a0e60e",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:11.208236Z",
+        "server": "engine",
+        "requestId": "req_37c82280002648d442",
+        "method": "POST",
+        "path": "/optin",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:11.237926Z",
+        "server": "engine",
+        "requestId": "req_4c3db68cc20e71e704",
+        "method": "GET",
+        "path": "/artist/solace-avenue?done=1",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:13.743358Z",
+        "server": "engine",
+        "requestId": "req_d69040fcd62d1481df",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:15.003813Z",
+        "server": "engine",
+        "requestId": "req_a2b11f260130890da8",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:15.039204Z",
+        "server": "engine",
+        "requestId": "req_9b0a29ea2590df353e",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:07:24.307158Z",
+        "server": "engine",
+        "requestId": "req_122244e0879a0a28a0",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:24.330663Z",
+        "server": "engine",
+        "requestId": "req_8d4cbdaeecf77e8d2b",
+        "method": "GET",
+        "path": "/login?next=/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:29.342352Z",
+        "server": "engine",
+        "requestId": "req_add0981864cf252638",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:30.742989Z",
+        "server": "engine",
+        "requestId": "req_3b661d6a35eefd6b54",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:31.166169Z",
+        "server": "engine",
+        "requestId": "req_ae6cb11be6d25e5fee",
+        "method": "GET",
+        "path": "/campaigns/coastline-ep",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:31.228127Z",
+        "server": "engine",
+        "requestId": "req_67f03f6e251dd67462",
+        "method": "GET",
+        "path": "/campaigns/coastline-ep",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:46.223392Z",
+        "server": "engine",
+        "requestId": "req_02003867820492d76d",
+        "method": "GET",
+        "path": "/api/docs",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:46.569249Z",
+        "server": "engine",
+        "requestId": "req_b9ce29d54cd76cc8ef",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 401,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:07:46.737294Z",
+        "server": "engine",
+        "requestId": "req_af1c12ef2a281b981b",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:07:46.782986Z",
+        "server": "engine",
+        "requestId": "req_00fbfa19111d46920f",
+        "method": "POST",
+        "path": "/api/staff/refunds",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T16:07:49.157765Z",
+        "server": "engine",
+        "requestId": "req_774b9ed34c684f02df",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:07:49.270801Z",
+        "server": "engine",
+        "requestId": "req_06d2a59ca87b3d583e",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_5b8eaf3becc4e0b052",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:07:49.622511Z",
+        "server": "engine",
+        "requestId": "req_8e1c661e605ae9f6b7",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 400,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:07:49.653985Z",
+        "server": "engine",
+        "requestId": "req_714ee5eb1000e500b6",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_7fda6491c11ed3865a",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:09:04.593384Z",
+        "server": "engine",
+        "requestId": "req_5640b66073f128a5bb",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:09:10.055921Z",
+        "server": "engine",
+        "requestId": "req_d65f5cdef22ac4d22a",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:09:10.073057Z",
+        "server": "engine",
+        "requestId": "req_51f375f2ebeafb41c2",
+        "method": "GET",
+        "path": "/login?next=/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:18:53.738419Z",
+        "server": "engine",
+        "requestId": "req_cf438687e80e5dcfad",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_5b8eaf3becc4e0b052",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:20:32.531081Z",
+        "server": "engine",
+        "requestId": "req_442b39e0cd30338198",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_538d3108dc14d9fa5e",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:20:43.454965Z",
+        "server": "engine",
+        "requestId": "req_34c5e7699fef17f5a1",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_7fda6491c11ed3865a",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:20:55.000243Z",
+        "server": "engine",
+        "requestId": "req_86c5fc028523644e9e",
+        "method": "POST",
+        "path": "/__tools/redeliver",
+        "status": 200,
+        "actor": "tools"
+      },
+      {
+        "ts": "2026-11-07T16:21:38.801406Z",
+        "server": "engine",
+        "requestId": "req_4ab139aa7f56322b52",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:21:46.329666Z",
+        "server": "engine",
+        "requestId": "req_135229aa3e797b9056",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:21:46.351734Z",
+        "server": "engine",
+        "requestId": "req_bb0eff905a2391f90b",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:21:46.589973Z",
+        "server": "engine",
+        "requestId": "req_2ba81ee928d56379d2",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:21:46.923775Z",
+        "server": "engine",
+        "requestId": "req_165276b9d7621c5a0a",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:22:00.695122Z",
+        "server": "engine",
+        "requestId": "req_d47a5564b86d44a63e",
+        "method": "POST",
+        "path": "/checkout/quote",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:22:14.117251Z",
+        "server": "engine",
+        "requestId": "req_c8b841c8c49e72ebd3",
+        "method": "POST",
+        "path": "/checkout/pay",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:22:14.130459Z",
+        "server": "fakepay",
+        "requestId": "req_d3a13b07125cabb066",
+        "method": "GET",
+        "path": "/pay/fp_074400aab6dccc10b3",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:22:24.778281Z",
+        "server": "fakepay",
+        "requestId": "req_256feb46ce6bea5a9e",
+        "method": "POST",
+        "path": "/pay/fp_074400aab6dccc10b3",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:22:24.851009Z",
+        "server": "engine",
+        "requestId": "req_fbc29abb88b45046bb",
+        "method": "GET",
+        "path": "/checkout/return?payment=pay_4e7d2b66a72bbb77b1&status=failed",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:22:25.517944Z",
+        "server": "engine",
+        "requestId": "req_b89ef00bcff5a846ed",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:22:26.530042Z",
+        "server": "engine",
+        "requestId": "req_8bbc46ccbe03c17d54",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_4e7d2b66a72bbb77b1",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:22:39.559062Z",
+        "server": "fakepay",
+        "requestId": "req_a60040f5b5edf33bea",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:23:10.493206Z",
+        "server": "engine",
+        "requestId": "req_e8e7244dfaf6ea2c48",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:23:10.503608Z",
+        "server": "fakepay",
+        "requestId": "req_ee6321d0c3e1686e91",
+        "method": "POST",
+        "path": "/dashboard/events/fpevt_e3a537ebc60d8c98da/replay",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:23:10.517718Z",
+        "server": "fakepay",
+        "requestId": "req_a39a38bdd1957f9987",
+        "method": "GET",
+        "path": "/dashboard?replayed=fpevt_e3a537ebc60d8c98da",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:23:21.427971Z",
+        "server": "engine",
+        "requestId": "req_df30798e562d65f7c8",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_4e7d2b66a72bbb77b1",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:23:29.442627Z",
+        "server": "engine",
+        "requestId": "req_4229577a87d3912df2",
+        "method": "GET",
+        "path": "/me/contributions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:23:48.578378Z",
+        "server": "engine",
+        "requestId": "req_22511fc646cc8bed8d",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:23:48.799203Z",
+        "server": "engine",
+        "requestId": "req_cea8674779b628a632",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:23:49.192819Z",
+        "server": "engine",
+        "requestId": "req_5d5fce20de47c74fbf",
+        "method": "POST",
+        "path": "/checkout/quote",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:23:49.557674Z",
+        "server": "engine",
+        "requestId": "req_986f47a15852a933be",
+        "method": "POST",
+        "path": "/checkout/pay",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:23:49.576446Z",
+        "server": "fakepay",
+        "requestId": "req_cdb3aedb34118a3afa",
+        "method": "GET",
+        "path": "/pay/fp_98dc62e1e4fb5c4877",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:23:50.02663Z",
+        "server": "fakepay",
+        "requestId": "req_f3383153889e667428",
+        "method": "POST",
+        "path": "/pay/fp_98dc62e1e4fb5c4877",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:23:50.05206Z",
+        "server": "engine",
+        "requestId": "req_fd6a26306cc2c34336",
+        "method": "GET",
+        "path": "/checkout/return?payment=pay_77e09dfb105ffac09f&status=success",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:23:50.737144Z",
+        "server": "engine",
+        "requestId": "req_35a75046aa84c11236",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:23:50.97344Z",
+        "server": "engine",
+        "requestId": "req_27044c3f7412186e64",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_77e09dfb105ffac09f",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:23:51.444807Z",
+        "server": "engine",
+        "requestId": "req_22da9836e5210b0b62",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:23:51.908932Z",
+        "server": "engine",
+        "requestId": "req_09396b938982dbfa01",
+        "method": "POST",
+        "path": "/api/automation/activity",
+        "status": 201,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:25:05.679246Z",
+        "server": "engine",
+        "requestId": "req_4b5ea8b30480c08b38",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:25:06.049421Z",
+        "server": "engine",
+        "requestId": "req_b1751e058457aba867",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:25:06.06315Z",
+        "server": "engine",
+        "requestId": "req_cfd4e43d5575628fed",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:06.165578Z",
+        "server": "engine",
+        "requestId": "req_d00a901795b015abad",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:06.402105Z",
+        "server": "engine",
+        "requestId": "req_ee3fad2bf4b5b23583",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:06.931968Z",
+        "server": "engine",
+        "requestId": "req_eaac94ab346896d01f",
+        "method": "POST",
+        "path": "/checkout/quote",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:07.209793Z",
+        "server": "engine",
+        "requestId": "req_6a8b02fd444fccba3b",
+        "method": "POST",
+        "path": "/checkout/pay",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:07.228202Z",
+        "server": "fakepay",
+        "requestId": "req_8151937fc82b00cf14",
+        "method": "GET",
+        "path": "/pay/fp_7d07510f6daca959b8",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:07.708901Z",
+        "server": "fakepay",
+        "requestId": "req_b3238e0e6d8d086b22",
+        "method": "POST",
+        "path": "/pay/fp_7d07510f6daca959b8",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:07.73863Z",
+        "server": "engine",
+        "requestId": "req_85b49384bc5288de43",
+        "method": "GET",
+        "path": "/checkout/return?payment=pay_5c215abccb885d13aa&status=success",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:07.929268Z",
+        "server": "engine",
+        "requestId": "req_d579b8fe41da2ad28b",
+        "method": "GET",
+        "path": "/me/contributions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:08.420157Z",
+        "server": "engine",
+        "requestId": "req_57a5cd94f964780dfa",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:25:08.914126Z",
+        "server": "engine",
+        "requestId": "req_53db09348a6eadedd0",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_5c215abccb885d13aa",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:25:09.119162Z",
+        "server": "engine",
+        "requestId": "req_61972d2e0618e61f5b",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:25:09.289709Z",
+        "server": "engine",
+        "requestId": "req_db8dc5406b4e9a3c14",
+        "method": "POST",
+        "path": "/api/automation/activity",
+        "status": 201,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:25:09.570897Z",
+        "server": "engine",
+        "requestId": "req_22439354c951ee9bf3",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:25:10.096243Z",
+        "server": "engine",
+        "requestId": "req_b8626ea95ddf99006f",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:25:10.177354Z",
+        "server": "engine",
+        "requestId": "req_c1f3d28b276c392ddb",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:10.301956Z",
+        "server": "engine",
+        "requestId": "req_75787df23aafbaf2f8",
+        "method": "GET",
+        "path": "/me/contributions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:10.587747Z",
+        "server": "engine",
+        "requestId": "req_f01b6c2c6882d9c50c",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:10.850431Z",
+        "server": "engine",
+        "requestId": "req_1bd7b9db986b894e7a",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:11.283038Z",
+        "server": "engine",
+        "requestId": "req_fea9795880612c5c8a",
+        "method": "POST",
+        "path": "/checkout/quote",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:11.517581Z",
+        "server": "engine",
+        "requestId": "req_b94b21c79e16e5b3b0",
+        "method": "POST",
+        "path": "/checkout/pay",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:11.536345Z",
+        "server": "fakepay",
+        "requestId": "req_5f4e2ed12376de93df",
+        "method": "GET",
+        "path": "/pay/fp_80a0de0563c7f8ff36",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:12.001323Z",
+        "server": "fakepay",
+        "requestId": "req_1efae1694522829a3b",
+        "method": "POST",
+        "path": "/pay/fp_80a0de0563c7f8ff36",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:12.01558Z",
+        "server": "engine",
+        "requestId": "req_60e301cc4a8dd12e35",
+        "method": "GET",
+        "path": "/checkout/return?payment=pay_71b0e0367179ac251e&status=failed",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:12.177247Z",
+        "server": "fakepay",
+        "requestId": "req_4700c498b40b7737a1",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:12.557397Z",
+        "server": "engine",
+        "requestId": "req_2b2aa76680ae4be952",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:25:12.563932Z",
+        "server": "fakepay",
+        "requestId": "req_747166fc0612287066",
+        "method": "POST",
+        "path": "/dashboard/events/fpevt_2075b608ac8f3a703f/replay",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:12.575158Z",
+        "server": "fakepay",
+        "requestId": "req_d9ff3b2a5fa953a362",
+        "method": "GET",
+        "path": "/dashboard?replayed=fpevt_2075b608ac8f3a703f",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:12.650368Z",
+        "server": "engine",
+        "requestId": "req_042f3a2e570c904d93",
+        "method": "GET",
+        "path": "/me/contributions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:25:12.724388Z",
+        "server": "engine",
+        "requestId": "req_4cb2f6a9c4f74d1e48",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:25:15.763099Z",
+        "server": "engine",
+        "requestId": "req_e31a9c71859ea0db7b",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_71b0e0367179ac251e",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:29:21.912493Z",
+        "server": "engine",
+        "requestId": "req_59dccbb69adff359ee",
+        "method": "GET",
+        "path": "/",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:29:21.965403Z",
+        "server": "fakepay",
+        "requestId": "req_47a89c73880ed64368",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:29:24.260044Z",
+        "server": "engine",
+        "requestId": "req_9dc381df0ce4b90108",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T16:31:50.291815Z",
+        "server": "engine",
+        "requestId": "req_2e3a38ec966305e7a4",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T16:31:59.851506Z",
+        "server": "engine",
+        "requestId": "req_889a361b72594df3fb",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:34:08.697968Z",
+        "server": "engine",
+        "requestId": "req_fd249d2081ed486b76",
+        "method": "GET",
+        "path": "/__tools/evidence",
+        "status": 200,
+        "actor": "tools"
+      },
+      {
+        "ts": "2026-11-07T16:35:01.542839Z",
+        "server": "engine",
+        "requestId": "req_67cc1ec428e1d9b37e",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T16:35:13.465011Z",
+        "server": "engine",
+        "requestId": "req_efd219b179b5f250d7",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:39:29.834816Z",
+        "server": "engine",
+        "requestId": "req_2a65357158e28af57f",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T16:39:38.527718Z",
+        "server": "engine",
+        "requestId": "req_1436085df9d0ca5751",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:43:59.972356Z",
+        "server": "engine",
+        "requestId": "req_b6f7599ec6fd5bf829",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T16:44:07.739498Z",
+        "server": "engine",
+        "requestId": "req_84832b191ddaea281c",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:46:59.695172Z",
+        "server": "engine",
+        "requestId": "req_836a33e0eb9187a99d",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T16:47:08.157198Z",
+        "server": "engine",
+        "requestId": "req_21fea5b7344b34443e",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:49:58.964202Z",
+        "server": "engine",
+        "requestId": "req_ebb8e7c388c40398ce",
+        "method": "GET",
+        "path": "/",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:49:59.47389Z",
+        "server": "engine",
+        "requestId": "req_33bb2a285a69bc8fb2",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:06.011835Z",
+        "server": "engine",
+        "requestId": "req_9d85ed959ea08fe407",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:07.346515Z",
+        "server": "engine",
+        "requestId": "req_e9ef9145956a579ea8",
+        "method": "GET",
+        "path": "/artist/solace-avenue?done=1",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:10.621888Z",
+        "server": "engine",
+        "requestId": "req_291a22ec43135b22f0",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:13.415991Z",
+        "server": "engine",
+        "requestId": "req_06d09dfbc3e9fc74ae",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:14.043056Z",
+        "server": "engine",
+        "requestId": "req_d82030692c089838d6",
+        "method": "POST",
+        "path": "/optin",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:14.074892Z",
+        "server": "engine",
+        "requestId": "req_b492b3ce446ecc15cd",
+        "method": "GET",
+        "path": "/artist/solace-avenue?done=1",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:15.915071Z",
+        "server": "engine",
+        "requestId": "req_c9c8114431ab44e950",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:16.385021Z",
+        "server": "engine",
+        "requestId": "req_91e03433e8e0bd67b3",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:16.482227Z",
+        "server": "engine",
+        "requestId": "req_abc337efdf97604a06",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:26.42385Z",
+        "server": "engine",
+        "requestId": "req_0a52b1ae81a97b0ce8",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:26.908035Z",
+        "server": "engine",
+        "requestId": "req_0854ccb543538f829b",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:26.925642Z",
+        "server": "engine",
+        "requestId": "req_629894c0a69896a4e7",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:27.060986Z",
+        "server": "engine",
+        "requestId": "req_52895e263711ff109b",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:27.665097Z",
+        "server": "engine",
+        "requestId": "req_50f4d130fea4f8c187",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:28.112304Z",
+        "server": "engine",
+        "requestId": "req_4dbb4ea9ec520af15f",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T16:50:28.579999Z",
+        "server": "engine",
+        "requestId": "req_10fc7ffcd1f76625b8",
+        "method": "POST",
+        "path": "/checkout/quote",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:28.883676Z",
+        "server": "engine",
+        "requestId": "req_7031bd582dc3e6d2b6",
+        "method": "POST",
+        "path": "/checkout/pay",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:28.903789Z",
+        "server": "fakepay",
+        "requestId": "req_e3538df387abfec6cb",
+        "method": "GET",
+        "path": "/pay/fp_3395275404447ce7a3",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:29.361053Z",
+        "server": "fakepay",
+        "requestId": "req_4b7258d3d0512c0c76",
+        "method": "POST",
+        "path": "/pay/fp_3395275404447ce7a3",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:29.39338Z",
+        "server": "engine",
+        "requestId": "req_c108c2e836406325e8",
+        "method": "GET",
+        "path": "/checkout/return?payment=pay_e90e38ff1ef3e8340c&status=success",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:29.609441Z",
+        "server": "engine",
+        "requestId": "req_b4798385df4d5ad366",
+        "method": "GET",
+        "path": "/me/contributions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:30.098615Z",
+        "server": "engine",
+        "requestId": "req_05d9716b1d0eb21a77",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:50:30.79139Z",
+        "server": "engine",
+        "requestId": "req_ff67a4f2b0cd38283a",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:50:32.52377Z",
+        "server": "engine",
+        "requestId": "req_6bb89e225c11e3dfc0",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_e90e38ff1ef3e8340c",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:50:32.752718Z",
+        "server": "engine",
+        "requestId": "req_890e870a613e6d5fc6",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:33.296168Z",
+        "server": "engine",
+        "requestId": "req_a5b2ca3f7c4f3ea811",
+        "method": "POST",
+        "path": "/api/automation/activity",
+        "status": 201,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:50:33.324606Z",
+        "server": "engine",
+        "requestId": "req_ad3b24a910a9751da8",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:33.405133Z",
+        "server": "engine",
+        "requestId": "req_93511136130cfe33e7",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:33.528263Z",
+        "server": "engine",
+        "requestId": "req_b2073f4cb9c9fa82dd",
+        "method": "GET",
+        "path": "/me/contributions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:33.862517Z",
+        "server": "engine",
+        "requestId": "req_d867b78e82e4dd0881",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:34.363183Z",
+        "server": "engine",
+        "requestId": "req_a2b52217f9308b227e",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:35.728869Z",
+        "server": "engine",
+        "requestId": "req_a58db270d8dc62a2ed",
+        "method": "POST",
+        "path": "/checkout/quote",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:36.049613Z",
+        "server": "engine",
+        "requestId": "req_8ad2759ef23f6ae66c",
+        "method": "POST",
+        "path": "/checkout/pay",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:36.07457Z",
+        "server": "fakepay",
+        "requestId": "req_f4ec482ce5eaea3397",
+        "method": "GET",
+        "path": "/pay/fp_30d9a3ad610a4afddd",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:37.107304Z",
+        "server": "fakepay",
+        "requestId": "req_556eb417b7b33752d3",
+        "method": "POST",
+        "path": "/pay/fp_30d9a3ad610a4afddd",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:37.127674Z",
+        "server": "engine",
+        "requestId": "req_51e2b6e737cfcebcb4",
+        "method": "GET",
+        "path": "/checkout/return?payment=pay_1685dd4bd2d4040701&status=failed",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:37.427639Z",
+        "server": "fakepay",
+        "requestId": "req_025b8b5e0d37d21dd8",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:37.850062Z",
+        "server": "engine",
+        "requestId": "req_638dd060c056f3e746",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:50:38.17355Z",
+        "server": "engine",
+        "requestId": "req_49b675c159c5095388",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:50:38.219659Z",
+        "server": "fakepay",
+        "requestId": "req_372d0cb3d7e807b7b3",
+        "method": "POST",
+        "path": "/dashboard/events/fpevt_619e2c6e08234f1164/replay",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:38.261887Z",
+        "server": "fakepay",
+        "requestId": "req_9abcfdd480bc8eb04c",
+        "method": "GET",
+        "path": "/dashboard?replayed=fpevt_619e2c6e08234f1164",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:38.478748Z",
+        "server": "engine",
+        "requestId": "req_284132b6a18a9fdd66",
+        "method": "GET",
+        "path": "/me/contributions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:50:38.833981Z",
+        "server": "engine",
+        "requestId": "req_b8210e53352778ca57",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_1685dd4bd2d4040701",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:50:40.741434Z",
+        "server": "engine",
+        "requestId": "req_c880bd8cea7a7af1f9",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:50:41.036544Z",
+        "server": "engine",
+        "requestId": "req_42f1466c361d4d6f7f",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:41.099997Z",
+        "server": "engine",
+        "requestId": "req_cae51200356e7e8566",
+        "method": "GET",
+        "path": "/login?next=/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:42.08723Z",
+        "server": "engine",
+        "requestId": "req_722b14e24988faf280",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:43.020056Z",
+        "server": "engine",
+        "requestId": "req_48d7b3d0233c54fe53",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:43.328425Z",
+        "server": "engine",
+        "requestId": "req_db67d1c89548eaae90",
+        "method": "GET",
+        "path": "/campaigns/coastline-ep",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:43.368698Z",
+        "server": "engine",
+        "requestId": "req_bb914edfc3e23bb491",
+        "method": "GET",
+        "path": "/campaigns/coastline-ep",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:50.846251Z",
+        "server": "engine",
+        "requestId": "req_6cf8d154bf078d25e5",
+        "method": "GET",
+        "path": "/api/docs",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:51.328663Z",
+        "server": "engine",
+        "requestId": "req_dd10f86741894fe3ec",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 401,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:50:51.501055Z",
+        "server": "engine",
+        "requestId": "req_689f56aa26049404d4",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:50:51.540614Z",
+        "server": "engine",
+        "requestId": "req_3203f566164bccdf04",
+        "method": "POST",
+        "path": "/api/staff/refunds",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T16:50:55.905965Z",
+        "server": "engine",
+        "requestId": "req_b7ca99a9d7fc02c471",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:50:55.978866Z",
+        "server": "engine",
+        "requestId": "req_121525e326b5f96497",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_1685dd4bd2d4040701",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:50:56.596035Z",
+        "server": "engine",
+        "requestId": "req_4a4fcf77a1d74d2280",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 400,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:50:56.627619Z",
+        "server": "engine",
+        "requestId": "req_8e4845f7ed7da4abe2",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_7fda6491c11ed3865a",
+        "status": 200,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:52:32.188054Z",
+        "server": "engine",
+        "requestId": "req_537c98a32db7f7bc30",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:52:32.297525Z",
+        "server": "engine",
+        "requestId": "req_a231c60c3a0a89de44",
+        "method": "POST",
+        "path": "/api/staff/refunds",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T16:52:32.353404Z",
+        "server": "engine",
+        "requestId": "req_050b44b8d0bca3be1e",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:53:45.956129Z",
+        "server": "engine",
+        "requestId": "req_64f8cf9c8b41ed032c",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T16:53:46.038967Z",
+        "server": "engine",
+        "requestId": "req_0f521af189ad2a087d",
+        "method": "POST",
+        "path": "/api/staff/refunds",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T16:53:46.761367Z",
+        "server": "engine",
+        "requestId": "req_7e7fe352d1393be36f",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:53:47.574862Z",
+        "server": "engine",
+        "requestId": "req_1c53ab359fc59b4ee6",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:53:47.625322Z",
+        "server": "engine",
+        "requestId": "req_4dc31d61dee9a98e59",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:53:49.410612Z",
+        "server": "engine",
+        "requestId": "req_da6fafcb4aa09fd8a1",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:53:49.806969Z",
+        "server": "engine",
+        "requestId": "req_66ddb85a3b846c0562",
+        "method": "GET",
+        "path": "/campaigns/coastline-ep",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:53:49.844295Z",
+        "server": "engine",
+        "requestId": "req_b12e28c457b265b085",
+        "method": "GET",
+        "path": "/campaigns/coastline-ep",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:54:57.204059Z",
+        "server": "engine",
+        "requestId": "req_dc3cae3da635d18c90",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:54:57.888984Z",
+        "server": "engine",
+        "requestId": "req_875dd03180a203ea3f",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:54:57.937551Z",
+        "server": "engine",
+        "requestId": "req_b34cef13ac30a2e695",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:54:59.194905Z",
+        "server": "engine",
+        "requestId": "req_ea5d48a22f2def6c21",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:54:59.491785Z",
+        "server": "engine",
+        "requestId": "req_07fb31a5b2e8f80129",
+        "method": "GET",
+        "path": "/campaigns/coastline-ep",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:54:59.522412Z",
+        "server": "engine",
+        "requestId": "req_03b6c28b026f01af0e",
+        "method": "GET",
+        "path": "/campaigns/coastline-ep",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:56:49.004853Z",
+        "server": "engine",
+        "requestId": "req_a2dc587168ec54303b",
+        "method": "POST",
+        "path": "/__tools/chaos",
+        "status": 200,
+        "actor": "tools"
+      },
+      {
+        "ts": "2026-11-07T16:57:22.620478Z",
+        "server": "engine",
+        "requestId": "req_4a123b99214aa3df43",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:57:23.123362Z",
+        "server": "engine",
+        "requestId": "req_95d1227dd351be7c65",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T16:57:23.140405Z",
+        "server": "engine",
+        "requestId": "req_c957dd273a4559df59",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:57:23.614811Z",
+        "server": "engine",
+        "requestId": "req_1b43ea6803de24047b",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:57:23.984299Z",
+        "server": "engine",
+        "requestId": "req_272403e66d8dcce858",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:57:24.585348Z",
+        "server": "engine",
+        "requestId": "req_5bfbd299c31e807e86",
+        "method": "POST",
+        "path": "/checkout/quote",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:57:25.050708Z",
+        "server": "engine",
+        "requestId": "req_420fe4b49a71a0acd7",
+        "method": "POST",
+        "path": "/checkout/pay",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:57:25.078612Z",
+        "server": "fakepay",
+        "requestId": "req_7aa459dc09e5697975",
+        "method": "GET",
+        "path": "/pay/fp_b49df73c29218e3ec3",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:57:25.842383Z",
+        "server": "fakepay",
+        "requestId": "req_cc55cd2c992a6811a0",
+        "method": "POST",
+        "path": "/pay/fp_b49df73c29218e3ec3",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:57:25.927715Z",
+        "server": "engine",
+        "requestId": "req_36213c4c207389ef47",
+        "method": "GET",
+        "path": "/checkout/return?payment=pay_1ff6eb0f5cdaff3f26&status=success",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:57:26.14279Z",
+        "server": "engine",
+        "requestId": "req_56636e37811c203160",
+        "method": "GET",
+        "path": "/me/contributions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T16:57:26.494995Z",
+        "server": "engine",
+        "requestId": "req_881426b98b1d80db05",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:57:27.255456Z",
+        "server": "engine",
+        "requestId": "req_41902ce60a9997b5b2",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T16:57:29.516026Z",
+        "server": "engine",
+        "requestId": "req_325cbbd67fad81e20e",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_1ff6eb0f5cdaff3f26",
+        "status": 503,
+        "actor": "automation"
+      },
+      {
+        "ts": "2026-11-07T16:57:38.442854Z",
+        "server": "engine",
+        "requestId": "req_d321c09565aed29fe4",
+        "method": "GET",
+        "path": "/api/automation/payments/pay_1ff6eb0f5cdaff3f26",
+        "status": 503,
+        "actor": "automation"
       }
     ]
   },
-  "signature": "25983b6d5c147eadf2f52baf73517b46653214d05a8339e8ae0f66aed60bbe56"
+  "signature": "e8cdf0af5005378064d688b1a18f4fd907adaa708f2a56d3f4c32a5acba7dd8e"
 }

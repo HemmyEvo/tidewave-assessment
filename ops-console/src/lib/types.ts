@@ -17,7 +17,7 @@ export interface Lead {
 export interface Activity {
   id: string;
   type: string;
-  detail: string;
+  detail: unknown;
   actor: string;
   createdAt: string;
 }
