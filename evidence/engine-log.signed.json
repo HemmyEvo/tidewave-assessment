@@ -1,0 +1,601 @@
+{
+  "payload": {
+    "environment": "seed_7b24559a",
+    "events": [
+      {
+        "attempts": 4,
+        "deliveredAt": "",
+        "id": "evt_48ff6b083e6cbd8789",
+        "lastStatus": "404",
+        "type": "optin.created"
+      },
+      {
+        "attempts": 3,
+        "deliveredAt": "",
+        "id": "evt_18f86983588ff109e5",
+        "lastStatus": "404",
+        "type": "payment.updated"
+      }
+    ],
+    "generatedAt": "2026-11-07T15:37:22Z",
+    "requests": [
+      {
+        "ts": "2026-11-07T15:20:21.808326Z",
+        "server": "engine",
+        "requestId": "req_d86d0988feec2d47a2",
+        "method": "GET",
+        "path": "/",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:20:21.914681Z",
+        "server": "fakepay",
+        "requestId": "req_d56da6a2102d9259af",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:20:23.439931Z",
+        "server": "engine",
+        "requestId": "req_b7949a27f10a38f0f9",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T15:24:42.29524Z",
+        "server": "engine",
+        "requestId": "req_20aa522272e8eab1ff",
+        "method": "GET",
+        "path": "/",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:27:20.953055Z",
+        "server": "engine",
+        "requestId": "req_18b9c4ed83c0b2c81d",
+        "method": "GET",
+        "path": "/",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:27:21.03266Z",
+        "server": "fakepay",
+        "requestId": "req_622bdc2f65165ae6b4",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:27:22.630817Z",
+        "server": "engine",
+        "requestId": "req_48214f3cafa5e5659a",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.viewer"
+      },
+      {
+        "ts": "2026-11-07T15:28:03.728154Z",
+        "server": "engine",
+        "requestId": "req_f83abf5428ea73a3dd",
+        "method": "GET",
+        "path": "/api/docs",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:28:47.72712Z",
+        "server": "engine",
+        "requestId": "req_53c40d34ec3a1c0ab3",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T15:28:47.786612Z",
+        "server": "engine",
+        "requestId": "req_782f605e197c467068",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T15:28:47.812788Z",
+        "server": "engine",
+        "requestId": "req_556d71b93a4b944d62",
+        "method": "GET",
+        "path": "/street-team",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T15:28:47.858771Z",
+        "server": "engine",
+        "requestId": "req_19f41936f5ed55dc82",
+        "method": "GET",
+        "path": "/api/staff/settings",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T15:28:47.907016Z",
+        "server": "engine",
+        "requestId": "req_6a8bffef0e6f7f5ae3",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T15:29:22.307659Z",
+        "server": "engine",
+        "requestId": "req_8d2a55086c02ec5d9e",
+        "method": "GET",
+        "path": "/api/staff/settings",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T15:29:22.392114Z",
+        "server": "engine",
+        "requestId": "req_de407c1baf73995d1a",
+        "method": "GET",
+        "path": "/api/staff/payments",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T15:33:05.51176Z",
+        "server": "engine",
+        "requestId": "req_f5f4fc8a54f6c9ad47",
+        "method": "GET",
+        "path": "/api/staff/activity",
+        "status": 200,
+        "actor": "staff.admin"
+      },
+      {
+        "ts": "2026-11-07T15:33:08.961236Z",
+        "server": "engine",
+        "requestId": "req_189bcbf625dfa3a35d",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:09.493604Z",
+        "server": "engine",
+        "requestId": "req_09df512c3fe933ce8d",
+        "method": "GET",
+        "path": "/street-team",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:09.657831Z",
+        "server": "engine",
+        "requestId": "req_c98839e6bd8fc002f6",
+        "method": "GET",
+        "path": "/login",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:09.823142Z",
+        "server": "engine",
+        "requestId": "req_31ebfeea75da6885ab",
+        "method": "GET",
+        "path": "/me",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:09.837041Z",
+        "server": "engine",
+        "requestId": "req_98d0cef81a83d1966c",
+        "method": "GET",
+        "path": "/login?next=/me",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:33.660276Z",
+        "server": "engine",
+        "requestId": "req_a6bb833f5e05aebca8",
+        "method": "GET",
+        "path": "/campaigns/harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:34.129543Z",
+        "server": "engine",
+        "requestId": "req_53af26b46f45b1c3fa",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:34.482661Z",
+        "server": "fakepay",
+        "requestId": "req_d24482e9234723edca",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:50.099259Z",
+        "server": "fakepay",
+        "requestId": "req_13c94e811de3ded50e",
+        "method": "GET",
+        "path": "/",
+        "status": 302,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:50.140386Z",
+        "server": "fakepay",
+        "requestId": "req_142c2ca3931a9131c6",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:50.182091Z",
+        "server": "fakepay",
+        "requestId": "req_aea5f4d599a939275a",
+        "method": "GET",
+        "path": "/api/docs",
+        "status": 404,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:50.193764Z",
+        "server": "fakepay",
+        "requestId": "req_87fd881995a72ee9aa",
+        "method": "GET",
+        "path": "/openapi.json",
+        "status": 404,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:50.238728Z",
+        "server": "engine",
+        "requestId": "req_6cef80756abcec043e",
+        "method": "GET",
+        "path": "/",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:52.479464Z",
+        "server": "engine",
+        "requestId": "req_52a9d40e79a1dc8e4f",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:52.491037Z",
+        "server": "engine",
+        "requestId": "req_5d1e79b7176e8a85b2",
+        "method": "GET",
+        "path": "/login?next=/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:52.836289Z",
+        "server": "engine",
+        "requestId": "req_919aa5784672e2fb30",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:33:53.034156Z",
+        "server": "engine",
+        "requestId": "req_9a0f834b98118ce560",
+        "method": "GET",
+        "path": "/api/docs",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:34:10.782093Z",
+        "server": "engine",
+        "requestId": "req_e8309278bed6def017",
+        "method": "GET",
+        "path": "/artist/solace-avenue",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:34:11.450015Z",
+        "server": "engine",
+        "requestId": "req_f840940df4b6d7c439",
+        "method": "POST",
+        "path": "/optin",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:34:11.463006Z",
+        "server": "engine",
+        "requestId": "req_e03ec837b18cc583c4",
+        "method": "GET",
+        "path": "/artist/solace-avenue?done=1",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:34:11.559563Z",
+        "server": "engine",
+        "requestId": "req_897b382ea1ebe5d141",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:34:11.800636Z",
+        "server": "engine",
+        "requestId": "req_1444db81b5bcdba0c7",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:34:11.830892Z",
+        "server": "engine",
+        "requestId": "req_53e1ac30b815d0c7bd",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T15:34:11.991554Z",
+        "server": "engine",
+        "requestId": "req_43d701263aa23e995e",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T15:35:23.949445Z",
+        "server": "engine",
+        "requestId": "req_2e22bafa682cc36ba7",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:35:24.304931Z",
+        "server": "fakepay",
+        "requestId": "req_61a39dddce344b24c5",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:35:24.654275Z",
+        "server": "engine",
+        "requestId": "req_e2c842275ce1443901",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:35:24.683981Z",
+        "server": "engine",
+        "requestId": "req_a67c3326c8ec124641",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T15:35:24.844474Z",
+        "server": "engine",
+        "requestId": "req_ed3482b09a8b56a859",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T15:35:25.349392Z",
+        "server": "engine",
+        "requestId": "req_9e233d91617f11bd13",
+        "method": "POST",
+        "path": "/checkout/quote",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T15:35:46.614363Z",
+        "server": "engine",
+        "requestId": "req_c1ff55a8940b0d97cf",
+        "method": "GET",
+        "path": "/login?next=%2Fme",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:35:46.97432Z",
+        "server": "engine",
+        "requestId": "req_fa0dd89de3994bd56b",
+        "method": "POST",
+        "path": "/login",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:35:47.003445Z",
+        "server": "engine",
+        "requestId": "req_ffcb0d5ac8dd0aee31",
+        "method": "GET",
+        "path": "/me",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T15:35:47.108391Z",
+        "server": "engine",
+        "requestId": "req_71ef1ba5e5dca2b8c9",
+        "method": "GET",
+        "path": "/checkout?campaign=harmattan-sessions",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T15:35:47.46561Z",
+        "server": "engine",
+        "requestId": "req_6ea383613648b41794",
+        "method": "POST",
+        "path": "/checkout/quote",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T15:35:47.691758Z",
+        "server": "engine",
+        "requestId": "req_67d91dd1e79cf6eeee",
+        "method": "POST",
+        "path": "/checkout/pay",
+        "status": 303,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T15:35:47.710136Z",
+        "server": "fakepay",
+        "requestId": "req_1daaf9583d8d4957fb",
+        "method": "GET",
+        "path": "/pay/fp_79c617bbc42c97872d",
+        "status": 200,
+        "actor": "participant:ada"
+      },
+      {
+        "ts": "2026-11-07T15:36:02.153764Z",
+        "server": "fakepay",
+        "requestId": "req_0c1e3a354c022c51eb",
+        "method": "GET",
+        "path": "/pay/fp_79c617bbc42c97872d",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:36:02.77248Z",
+        "server": "fakepay",
+        "requestId": "req_bc25f16515bc2bdb65",
+        "method": "POST",
+        "path": "/pay/fp_79c617bbc42c97872d",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:36:02.788149Z",
+        "server": "engine",
+        "requestId": "req_94e1a490276044c537",
+        "method": "GET",
+        "path": "/checkout/return?payment=pay_5b8eaf3becc4e0b052&status=failed",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:36:02.797791Z",
+        "server": "engine",
+        "requestId": "req_89cc38314de423f74b",
+        "method": "GET",
+        "path": "/login?next=/checkout/return?payment=pay_5b8eaf3becc4e0b052&status=failed",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:36:03.579687Z",
+        "server": "engine",
+        "requestId": "req_fad420dece1aa1cc0f",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T15:36:04.22795Z",
+        "server": "fakepay",
+        "requestId": "req_8eb96a6008c71c93fd",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:37:04.473598Z",
+        "server": "fakepay",
+        "requestId": "req_4027aac07a96483f3f",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:37:04.901807Z",
+        "server": "engine",
+        "requestId": "req_e0e69b5d87ba4d6764",
+        "method": "POST",
+        "path": "/webhooks/fakepay",
+        "status": 200,
+        "actor": "fakepay"
+      },
+      {
+        "ts": "2026-11-07T15:37:04.91729Z",
+        "server": "fakepay",
+        "requestId": "req_45c9b7a03edd14a829",
+        "method": "POST",
+        "path": "/dashboard/events/fpevt_77765a819e4527423d/replay",
+        "status": 303,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:37:04.937297Z",
+        "server": "fakepay",
+        "requestId": "req_037b73952bbf5c3982",
+        "method": "GET",
+        "path": "/dashboard?replayed=fpevt_77765a819e4527423d",
+        "status": 200,
+        "actor": "anonymous"
+      },
+      {
+        "ts": "2026-11-07T15:37:05.533628Z",
+        "server": "fakepay",
+        "requestId": "req_0c491cbb73f928a353",
+        "method": "GET",
+        "path": "/dashboard",
+        "status": 200,
+        "actor": "anonymous"
+      }
+    ]
+  },
+  "signature": "25983b6d5c147eadf2f52baf73517b46653214d05a8339e8ae0f66aed60bbe56"
+}

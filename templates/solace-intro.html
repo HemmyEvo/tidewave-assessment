@@ -1,16 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Solace Avenue</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solace Avenue - Harmattan Sessions</title>
+  <style>
+    body { margin: 0; padding: 0; background: #f4f4f2; color: #242424; font-family: Arial, sans-serif; }
+    .preheader { display: none; max-height: 0; overflow: hidden; opacity: 0; }
+    .wrap { width: 100%; padding: 24px 12px; }
+    .card { max-width: 600px; margin: 0 auto; padding: 32px; background: #fff; border-radius: 12px; }
+    .button { display: inline-block; padding: 14px 22px; background: #174b3a; color: #fff !important; text-decoration: none; border-radius: 6px; }
+    .fine-print { margin-top: 28px; color: #555; font-size: 13px; line-height: 1.6; }
+    @media only screen and (max-width: 480px) {
+      .wrap { padding: 12px 8px; }
+      .card { padding: 22px 18px; }
+      .button { display: block; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-  <div>
-    <h2>Hi {{firstName}},</h2>
-    <p>You asked to hear more about Solace Avenue and the new project.</p>
-    <p>Check out our latest campaign details below.</p>
-    <p><a href="{{campaignUrl}}">Click here</a></p>
-    <p>Best,<br>Tidewave Music</p>
+  <div class="preheader">Discover Solace Avenue's Harmattan Sessions campaign. Backing is entirely voluntary.</div>
+  <div class="wrap">
+    <main class="card">
+      <h1>Hi {{firstName}},</h1>
+      <p>Thanks for choosing to hear more about Solace Avenue. We're sharing the Harmattan Sessions campaign with you.</p>
+      <p>Explore the music and project details whenever you like.</p>
+      <p><a class="button" href="{{campaignUrl}}">Explore Harmattan Sessions</a></p>
+      <p>Backing is entirely voluntary. It is not an investment, not a loan, and not employment.</p>
+      <p class="fine-print"><a href="{{unsubscribeUrl}}">Unsubscribe from email updates</a></p>
+      <p>Warmly,<br>Tidewave Music</p>
+    </main>
   </div>
 </body>
 </html>

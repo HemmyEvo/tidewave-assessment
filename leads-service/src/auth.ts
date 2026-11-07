@@ -80,3 +80,11 @@ export function requireTools(req: Request, res: Response, next: NextFunction): v
   req.user = { token, role: 'tools' };
   next();
 }
+
+export function requireAutomation(req: Request, res: Response, next: NextFunction): void {
+  if (!req.user || req.user.role !== 'automation') {
+    res.status(401).json({ error: 'Unauthorized: Automation credentials required' });
+    return;
+  }
+  next();
+}

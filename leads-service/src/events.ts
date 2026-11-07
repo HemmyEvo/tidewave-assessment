@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto, { timingSafeEqual } from 'crypto';
 import { config } from './config';
 
 export interface LeadCreatedEventPayload {
@@ -19,6 +19,21 @@ export function signPayload(timestamp: number, rawBody: string, secret: string):
   return `t=${timestamp},v1=${hmac.digest('hex')}`;
 }
 
+export function verifyPayload(rawBody: string, signature: string, secret: string): boolean {
+  const match = /^t=(\d+),v1=([a-f0-9]{64})$/i.exec(signature);
+  if (!match) {
+    return false;
+  }
+
+  const timestamp = Number(match[1]);
+  const supplied = Buffer.from(match[2], 'hex');
+  const expected = Buffer.from(
+    signPayload(timestamp, rawBody, secret).slice('t='.length + match[1].length + 4),
+    'hex'
+  );
+  return supplied.length === expected.length && timingSafeEqual(supplied, expected);
+}
+
 export async function sendLeadCreatedEvent(event: LeadCreatedEventPayload): Promise<boolean> {
   const rawBody = JSON.stringify(event);
   const timestamp = Math.floor(Date.now() / 1000);
@@ -33,6 +48,7 @@ export async function sendLeadCreatedEvent(event: LeadCreatedEventPayload): Prom
         'X-Tidewave-Signature': signature,
       },
       body: rawBody,
+      signal: AbortSignal.timeout(5000),
     });
 
     if (!response.ok) {

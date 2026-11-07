@@ -29,6 +29,24 @@ export interface RenderResult {
   text: string;
 }
 
+function safeTemplateUrl(value: unknown, fallback: string): string {
+  if (typeof value !== 'string' || value.trim() === '') {
+    return fallback;
+  }
+
+  const candidate = value.trim();
+  try {
+    const parsed = new URL(candidate, 'https://tidewave.test');
+    if (['http:', 'https:', 'mailto:'].includes(parsed.protocol)) {
+      return candidate;
+    }
+  } catch {
+    return fallback;
+  }
+
+  return fallback;
+}
+
 export function listTemplates(): TemplateItem[] {
   const dir = process.env.TEMPLATES_DIR || config.templatesDir;
   if (!fs.existsSync(dir)) {
@@ -74,6 +92,10 @@ export function renderTemplate(
   variables: Record<string, any> = {},
   isTest: boolean = false
 ): RenderResult | null {
+  if (!/^[a-z0-9][a-z0-9-]*$/i.test(key)) {
+    return null;
+  }
+
   const dir = process.env.TEMPLATES_DIR || config.templatesDir;
   const jsonPath = path.join(dir, `${key}.json`);
   const htmlPath = path.join(dir, `${key}.html`);
@@ -89,10 +111,12 @@ export function renderTemplate(
   const renderContext: Record<string, any> = {};
   if (meta.variables && Array.isArray(meta.variables)) {
     for (const v of meta.variables) {
-      renderContext[v.name] =
-        variables && variables[v.name] !== undefined
-          ? variables[v.name]
-          : '' + variables[v.name];
+      const provided = variables?.[v.name];
+      const fallback = v.name === 'firstName' ? 'there' : v.example || '';
+      const value = provided === undefined || provided === null || provided === '' ? fallback : provided;
+      renderContext[v.name] = v.name.toLowerCase().endsWith('url')
+        ? safeTemplateUrl(value, fallback)
+        : value;
     }
   }
 

@@ -12,18 +12,104 @@
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
-      "position": [
-        220,
-        300
-      ],
+      "position": [220, 300],
       "id": "01948b81-0001-7000-8000-000000000001",
-      "name": "Webhook",
-      "webhookId": "5b7c1f1e-3a52-4d7e-9a61-0c2f6a3e1a01"
+      "name": "Webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://leads:8081/__automation/events/verify",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Tidewave-Signature",
+              "value": "={{ $('Webhook').first().json.headers['x-tidewave-signature'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ event: $('Webhook').first().json.body }) }}",
+        "options": {
+          "maxTries": 5,
+          "waitBetweenTries": 1000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300],
+      "id": "01948b81-0001-7000-8000-000000000002",
+      "name": "Verify Signed Event",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "cred_tidewave_automation",
+          "name": "Tidewave Automation"
+        }
+      },
+      "notes": "Reject events that do not match the engine HMAC signature."
+    },
+    {
+      "parameters": {
+        "jsCode": "const event = $('Webhook').first().json.body;\nif (event?.type !== 'lead.created' || !event.id || !event.data?.leadId) {\n  throw new Error('Invalid lead.created event');\n}\nconst state = $getWorkflowStaticData('global');\nstate.deliveredLeadApplications ||= {};\nreturn [{ json: { eventId: event.id, leadId: event.data.leadId, alreadyDelivered: Boolean(state.deliveredLeadApplications[event.data.leadId]) } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 300],
+      "id": "01948b81-0001-7000-8000-000000000003",
+      "name": "Check Duplicate Application",
+      "notes": "One screening email per lead ID, including event redeliveries."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "lead-duplicate",
+              "leftValue": "={{ $json.alreadyDelivered }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [880, 300],
+      "id": "01948b81-0001-7000-8000-000000000004",
+      "name": "Already Delivered"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, duplicate: true }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1100, 180],
+      "id": "01948b81-0001-7000-8000-000000000005",
+      "name": "Respond Duplicate"
     },
     {
       "parameters": {
         "method": "GET",
-        "url": "=http://leads:8081/leads/{{ $json.body.data.leadId }}",
+        "url": "={{ 'http://leads:8081/leads/' + $('Check Duplicate Application').first().json.leadId }}",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "httpHeaderAuth",
         "options": {
@@ -33,11 +119,8 @@
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [
-        440,
-        300
-      ],
-      "id": "01948b81-0001-7000-8000-000000000002",
+      "position": [1100, 420],
+      "id": "01948b81-0001-7000-8000-000000000006",
       "name": "Get Lead",
       "credentials": {
         "httpHeaderAuth": {
@@ -48,23 +131,65 @@
     },
     {
       "parameters": {
+        "jsCode": "const lead = $input.first().json;\nconst eligible = lead.status === 'screening_invite' && lead.consent === true && typeof lead.email === 'string' && lead.email.toLowerCase().endsWith('.test');\nreturn [{ json: { eligible, leadId: lead.id, firstName: lead.firstName, email: lead.email, status: lead.status } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1320, 420],
+      "id": "01948b81-0001-7000-8000-000000000007",
+      "name": "Check Screening Eligibility",
+      "notes": "Only consented screening invitations for test-domain addresses may send."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eligible",
+              "leftValue": "={{ $json.eligible }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1540, 420],
+      "id": "01948b81-0001-7000-8000-000000000008",
+      "name": "Eligible for Screening"
+    },
+    {
+      "parameters": {
         "method": "POST",
         "url": "http://leads:8081/templates/street-team-prospect/render",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"variables\": {\n    \"firstName\": \"{{ $json.firstName }}\",\n    \"score\": \"{{ $json.score }}\"\n  },\n  \"test\": false\n}",
-        "options": {}
+        "jsonBody": "={{ JSON.stringify({ variables: { firstName: $('Check Screening Eligibility').first().json.firstName, nextStepText: 'Please choose a convenient time for your initial screening call.', screeningUrl: 'http://localhost:7080/street-team/screening' }, test: false }) }}",
+        "options": {
+          "maxTries": 5,
+          "waitBetweenTries": 1000
+        }
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [
-        660,
-        300
-      ],
-      "id": "01948b81-0001-7000-8000-000000000003",
-      "name": "Render Template",
+      "position": [1760, 360],
+      "id": "01948b81-0001-7000-8000-000000000009",
+      "name": "Render Screening Invitation",
       "credentials": {
         "httpHeaderAuth": {
           "id": "cred_tidewave_automation",
@@ -74,35 +199,20 @@
     },
     {
       "parameters": {
-        "jsCode": "const item = $input.first().json;\nconst lead = $('Get Lead').first().json;\nlet subject = item.subject;\nif (lead.score >= 85) {\n  subject = \"You're now an active Tidewave rep!\";\n}\nreturn [{ json: { ...item, subject, leadEmail: lead.email, leadId: lead.id } }];"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        880,
-        300
-      ],
-      "id": "01948b81-0001-7000-8000-000000000004",
-      "name": "Format Subject",
-      "notes": "Format email subject according to rep score"
-    },
-    {
-      "parameters": {
         "fromEmail": "hello@tidewave.test",
-        "toEmail": "={{ $json.leadEmail }}",
+        "toEmail": "={{ $('Check Screening Eligibility').first().json.email }}",
         "subject": "={{ $json.subject }}",
         "html": "={{ $json.html }}",
         "options": {}
       },
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
-      "position": [
-        1100,
-        300
-      ],
-      "id": "01948b81-0001-7000-8000-000000000005",
-      "name": "Send Email",
-      "onError": "continueRegularOutput",
+      "position": [1980, 360],
+      "id": "01948b81-0001-7000-8000-000000000010",
+      "name": "Send Screening Invitation",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 1000,
       "credentials": {
         "smtp": {
           "id": "cred_mailpit_smtp",
@@ -112,23 +222,33 @@
     },
     {
       "parameters": {
+        "jsCode": "const state = $getWorkflowStaticData('global');\nstate.deliveredLeadApplications ||= {};\nconst leadId = $('Check Screening Eligibility').first().json.leadId;\nstate.deliveredLeadApplications[leadId] = new Date().toISOString();\nreturn [{ json: { leadId, eventId: $('Check Duplicate Application').first().json.eventId } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2200, 360],
+      "id": "01948b81-0001-7000-8000-000000000011",
+      "name": "Mark Application Delivered"
+    },
+    {
+      "parameters": {
         "method": "POST",
-        "url": "=http://leads:8081/leads/{{ $('Format Subject').first().json.leadId }}/activity",
+        "url": "={{ 'http://leads:8081/leads/' + $json.leadId + '/activity' }}",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"type\": \"email_sent\",\n  \"detail\": {\n    \"subject\": \"{{ $('Format Subject').first().json.subject }}\"\n  }\n}",
-        "options": {}
+        "jsonBody": "={{ JSON.stringify({ type: 'email_sent', detail: { eventId: $json.eventId, action: 'screening_invitation' } }) }}",
+        "options": {
+          "maxTries": 5,
+          "waitBetweenTries": 1000
+        }
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [
-        1320,
-        300
-      ],
-      "id": "01948b81-0001-7000-8000-000000000006",
-      "name": "Record Activity",
+      "position": [2420, 360],
+      "id": "01948b81-0001-7000-8000-000000000012",
+      "name": "Record Email Activity",
       "credentials": {
         "httpHeaderAuth": {
           "id": "cred_tidewave_automation",
@@ -139,85 +259,67 @@
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "{\n  \"ok\": true\n}",
+        "responseBody": "={{ JSON.stringify({ ok: true, delivered: true }) }}",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [
-        1540,
-        300
-      ],
-      "id": "01948b81-0001-7000-8000-000000000007",
-      "name": "Respond to Webhook"
+      "position": [2640, 360],
+      "id": "01948b81-0001-7000-8000-000000000013",
+      "name": "Respond Delivered"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, skipped: true }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1760, 560],
+      "id": "01948b81-0001-7000-8000-000000000014",
+      "name": "Respond Not Eligible"
     }
   ],
   "connections": {
     "Webhook": {
+      "main": [[{ "node": "Verify Signed Event", "type": "main", "index": 0 }]]
+    },
+    "Verify Signed Event": {
+      "main": [[{ "node": "Check Duplicate Application", "type": "main", "index": 0 }]]
+    },
+    "Check Duplicate Application": {
+      "main": [[{ "node": "Already Delivered", "type": "main", "index": 0 }]]
+    },
+    "Already Delivered": {
       "main": [
-        [
-          {
-            "node": "Get Lead",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [{ "node": "Respond Duplicate", "type": "main", "index": 0 }],
+        [{ "node": "Get Lead", "type": "main", "index": 0 }]
       ]
     },
     "Get Lead": {
+      "main": [[{ "node": "Check Screening Eligibility", "type": "main", "index": 0 }]]
+    },
+    "Check Screening Eligibility": {
+      "main": [[{ "node": "Eligible for Screening", "type": "main", "index": 0 }]]
+    },
+    "Eligible for Screening": {
       "main": [
-        [
-          {
-            "node": "Render Template",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [{ "node": "Render Screening Invitation", "type": "main", "index": 0 }],
+        [{ "node": "Respond Not Eligible", "type": "main", "index": 0 }]
       ]
     },
-    "Render Template": {
-      "main": [
-        [
-          {
-            "node": "Format Subject",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Render Screening Invitation": {
+      "main": [[{ "node": "Send Screening Invitation", "type": "main", "index": 0 }]]
     },
-    "Format Subject": {
-      "main": [
-        [
-          {
-            "node": "Send Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Send Screening Invitation": {
+      "main": [[{ "node": "Mark Application Delivered", "type": "main", "index": 0 }]]
     },
-    "Send Email": {
-      "main": [
-        [
-          {
-            "node": "Record Activity",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Mark Application Delivered": {
+      "main": [[{ "node": "Record Email Activity", "type": "main", "index": 0 }]]
     },
-    "Record Activity": {
-      "main": [
-        [
-          {
-            "node": "Respond to Webhook",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Record Email Activity": {
+      "main": [[{ "node": "Respond Delivered", "type": "main", "index": 0 }]]
     }
   },
   "settings": {

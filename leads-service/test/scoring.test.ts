@@ -47,6 +47,10 @@ describe('Scoring Logic', () => {
     expect(determineStatus(85)).toBe('screening_invite');
   });
 
+  it('invites a lead whose score is exactly 70', () => {
+    expect(determineStatus(70)).toBe('screening_invite');
+  });
+
   it('assigns status for clear medium score', () => {
     expect(determineStatus(60)).toBe('needs_review');
   });

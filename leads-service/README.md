@@ -41,12 +41,15 @@ npm test
 ## API Endpoints
 
 - `GET /health` — Service health check
-- `POST /leads` — Public endpoint to submit a new street team application
+- `POST /leads` — Public endpoint to submit a new street team application. Scores of 70+ become `screening_invite`, 50–69 become `needs_review`, and lower scores become `not_now`.
 - `GET /leads?page=1&pageSize=20&search=` — Staff endpoint to list/search leads
 - `GET /leads/:id` — Staff / automation endpoint to retrieve lead details
-- `PATCH /leads/:id/status` — Staff admin endpoint to update lead status
+- `PATCH /leads/:id/status` — Admin-only status update; `active`, `hired`, and `field_ready` are not valid statuses
 - `POST /leads/:id/activity` — Log an activity event for a lead
 - `GET /leads/:id/activity` — List activity history for a lead
 - `GET /templates` — List available email templates and required variables
 - `POST /templates/:key/render` — Render an email template with variables
+- `POST /__automation/events/verify` — Verify an event signature (Automation token required)
 - `POST /__tools/reset` — Reset and re-seed the leads database (Tools token required)
+
+The token and signing-secret defaults are for local development only. Production deployments must configure `STAFF_ADMIN_TOKEN`, `STAFF_VIEWER_TOKEN`, `AUTOMATION_TOKEN`, `TOOLS_TOKEN`, and `EVENTS_SIGNING_SECRET`; startup fails if any are missing.

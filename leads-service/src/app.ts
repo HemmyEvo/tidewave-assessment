@@ -3,6 +3,7 @@ import { authenticate } from './auth';
 import { leadsRouter } from './routes/leads';
 import { templatesRouter } from './routes/templates';
 import { toolsRouter } from './routes/tools';
+import { automationRouter } from './routes/automation';
 
 export const app = express();
 
@@ -18,6 +19,7 @@ app.get('/health', (req, res) => {
 app.use('/leads', leadsRouter);
 app.use('/templates', templatesRouter);
 app.use('/__tools', toolsRouter);
+app.use('/__automation', automationRouter);
 
 // Global 404 handler
 app.use((req, res) => {

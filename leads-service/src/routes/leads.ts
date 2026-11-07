@@ -3,18 +3,23 @@ import { z } from 'zod';
 import * as db from '../db';
 import { calculateScore, determineStatus } from '../scoring';
 import { sendLeadCreatedEvent } from '../events';
-import { requireStaff, requireStaffOrAutomation } from '../auth';
+import { requireAdmin, requireStaff, requireStaffOrAutomation } from '../auth';
 
 export const leadsRouter = Router();
 
+const nonNegativeNumber = z.preprocess(
+  (value) => (typeof value === 'string' && value.trim() !== '' ? Number(value) : value),
+  z.number().finite().nonnegative()
+);
+
 const createLeadSchema = z.object({
-  firstName: z.string().min(1, 'First name is required'),
+  firstName: z.string().trim().min(1, 'First name is required'),
   lastName: z.string().optional().nullable(),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().min(1, 'Phone is required'),
-  city: z.string().min(1, 'City is required'),
-  experienceYears: z.union([z.number(), z.string()]).optional().default(0),
-  hoursPerWeek: z.union([z.number(), z.string()]).optional().default(0),
+  email: z.string().trim().email('Invalid email address').transform((value) => value.toLowerCase()),
+  phone: z.string().trim().min(1, 'Phone is required'),
+  city: z.string().trim().min(1, 'City is required'),
+  experienceYears: nonNegativeNumber.optional().default(0),
+  hoursPerWeek: nonNegativeNumber.optional().default(0),
   source: z.string().optional().nullable(),
   consent: z.literal(true, {
     errorMap: () => ({ message: 'Consent must be accepted' }),
@@ -50,7 +55,7 @@ leadsRouter.post('/', async (req: Request, res: Response) => {
     // Applications where previous consent was withdrawn are not duplicates
     const dupQuery = `
       SELECT id, status FROM leads.leads
-      WHERE (email = $1 OR phone = $2) AND consent_withdrawn = false
+      WHERE (LOWER(BTRIM(email)) = $1 OR phone = $2) AND consent_withdrawn = false
       ORDER BY created_at ASC
       LIMIT 1
     `;
@@ -105,19 +110,6 @@ leadsRouter.post('/', async (req: Request, res: Response) => {
 
     const status = determineStatus(score);
 
-    const eventId = `evt_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
-    sendLeadCreatedEvent({
-      id: eventId,
-      type: 'lead.created',
-      createdAt: new Date().toISOString(),
-      data: {
-        leadId,
-        status,
-        email,
-        firstName,
-      },
-    });
-
     const insertQuery = `
       INSERT INTO leads.leads (
         id, first_name, last_name, email, phone, city,
@@ -151,6 +143,19 @@ leadsRouter.post('/', async (req: Request, res: Response) => {
         JSON.stringify({ source, score, status }),
       ]
     );
+
+    const eventId = `evt_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    await sendLeadCreatedEvent({
+      id: eventId,
+      type: 'lead.created',
+      createdAt: new Date().toISOString(),
+      data: {
+        leadId,
+        status,
+        email,
+        firstName,
+      },
+    });
 
     res.status(201).json({
       id: inserted.rows[0].id,
@@ -243,10 +248,10 @@ leadsRouter.get('/:id', requireStaffOrAutomation, async (req: Request, res: Resp
 });
 
 // PATCH /leads/:id/status (staff admin only)
-leadsRouter.patch('/:id/status', requireStaff, async (req: Request, res: Response) => {
+leadsRouter.patch('/:id/status', requireAdmin, async (req: Request, res: Response) => {
   const { status } = req.body;
 
-  const allowedStatuses = ['screening_invite', 'needs_review', 'not_now', 'duplicate', 'active'];
+  const allowedStatuses = ['screening_invite', 'needs_review', 'not_now', 'duplicate'];
   if (!status || !allowedStatuses.includes(status)) {
     res.status(422).json({
       error: `Invalid status. Allowed values: ${allowedStatuses.join(', ')}`,
@@ -297,8 +302,8 @@ leadsRouter.patch('/:id/status', requireStaff, async (req: Request, res: Respons
 // POST /leads/:id/activity (automation or staff)
 leadsRouter.post('/:id/activity', requireStaffOrAutomation, async (req: Request, res: Response) => {
   const { type, detail } = req.body;
-  if (!type) {
-    res.status(422).json({ error: 'Activity type is required' });
+  if (typeof type !== 'string' || !type.trim()) {
+    res.status(422).json({ error: 'Activity type must be a non-empty string' });
     return;
   }
 

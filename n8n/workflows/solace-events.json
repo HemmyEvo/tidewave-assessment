@@ -12,13 +12,99 @@
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
-      "position": [
-        200,
-        300
-      ],
+      "position": [200, 300],
       "id": "01948b82-0001-7000-8000-000000000001",
-      "name": "Webhook",
-      "webhookId": "5b7c1f1e-3a52-4d7e-9a61-0c2f6a3e1a02"
+      "name": "Webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://leads:8081/__automation/events/verify",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Tidewave-Signature",
+              "value": "={{ $('Webhook').first().json.headers['x-tidewave-signature'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ event: $('Webhook').first().json.body }) }}",
+        "options": {
+          "maxTries": 5,
+          "waitBetweenTries": 1000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [420, 300],
+      "id": "01948b82-0001-7000-8000-000000000002",
+      "name": "Verify Signed Event",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "cred_tidewave_automation",
+          "name": "Tidewave Automation"
+        }
+      },
+      "notes": "Verify the engine HMAC before interpreting event data."
+    },
+    {
+      "parameters": {
+        "jsCode": "const event = $('Webhook').first().json.body;\nif (!event?.id || !['optin.created', 'payment.updated'].includes(event.type)) {\n  throw new Error('Unsupported or invalid Solace event');\n}\nconst state = $getWorkflowStaticData('global');\nstate.sentSolaceActions ||= {};\nconst actionKey = event.type === 'payment.updated' ? `payment-confirmed:${event.data?.paymentId}` : `optin:${event.id}`;\nif (actionKey.endsWith(':undefined')) throw new Error('Event is missing its payment ID');\nreturn [{ json: { eventId: event.id, eventType: event.type, actionKey, alreadySent: Boolean(state.sentSolaceActions[actionKey]), event } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [640, 300],
+      "id": "01948b82-0001-7000-8000-000000000003",
+      "name": "Normalize and Deduplicate",
+      "notes": "Deduplicate opt-ins by event and confirmations by payment action."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "already-sent",
+              "leftValue": "={{ $json.alreadySent }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [860, 300],
+      "id": "01948b82-0001-7000-8000-000000000004",
+      "name": "Already Sent"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, duplicate: true }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1080, 180],
+      "id": "01948b82-0001-7000-8000-000000000005",
+      "name": "Respond Duplicate"
     },
     {
       "parameters": {
@@ -29,13 +115,13 @@
                 "options": {
                   "caseSensitive": true,
                   "leftValue": "",
-                  "typeValidation": "loose",
+                  "typeValidation": "strict",
                   "version": 2
                 },
                 "conditions": [
                   {
-                    "id": "r1",
-                    "leftValue": "={{ $json.body.type }}",
+                    "id": "optin",
+                    "leftValue": "={{ $json.eventType }}",
                     "rightValue": "optin.created",
                     "operator": {
                       "type": "string",
@@ -53,13 +139,13 @@
                 "options": {
                   "caseSensitive": true,
                   "leftValue": "",
-                  "typeValidation": "loose",
+                  "typeValidation": "strict",
                   "version": 2
                 },
                 "conditions": [
                   {
-                    "id": "r2",
-                    "leftValue": "={{ $json.body.type }}",
+                    "id": "payment",
+                    "leftValue": "={{ $json.eventType }}",
                     "rightValue": "payment.updated",
                     "operator": {
                       "type": "string",
@@ -78,55 +164,51 @@
       },
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
-      "position": [
-        440,
-        300
-      ],
-      "id": "01948b82-0001-7000-8000-000000000002",
-      "name": "Switch Event Type"
+      "position": [1080, 360],
+      "id": "01948b82-0001-7000-8000-000000000006",
+      "name": "Route Event Type"
     },
     {
       "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "loose",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "id": "r3",
-                    "leftValue": "={{ $('Webhook').first().json.body.data.source }}",
-                    "rightValue": "artist",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "artist"
-            }
-          ]
-        },
-        "options": {
-          "fallbackOutput": "extra"
-        }
+        "jsCode": "const event = $('Normalize and Deduplicate').first().json.event;\nconst data = event.data || {};\nconst email = typeof data.email === 'string' ? data.email.trim() : '';\nconst eligible = data.consent === true && String(data.source || '').toLowerCase() === 'artist' && email.toLowerCase().endsWith('.test');\nreturn [{ json: { eligible, email, firstName: data.firstName || 'there', participantId: data.participantId || '', campaignUrl: 'http://localhost:7080/campaigns/harmattan-sessions' } }];"
       },
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3.2,
-      "position": [
-        700,
-        180
-      ],
-      "id": "01948b82-0001-7000-8000-000000000003",
-      "name": "Route Source"
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1320, 180],
+      "id": "01948b82-0001-7000-8000-000000000007",
+      "name": "Check Opt-in Consent",
+      "notes": "Send only signed, consented artist opt-ins to the active campaign."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eligible-optin",
+              "leftValue": "={{ $json.eligible }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1540, 180],
+      "id": "01948b82-0001-7000-8000-000000000008",
+      "name": "Eligible Opt-in"
     },
     {
       "parameters": {
@@ -136,16 +218,16 @@
         "nodeCredentialType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"variables\": {\n    \"firstName\": \"{{ $('Webhook').first().json.body.data.firstName }}\",\n    \"campaignUrl\": \"http://localhost:7080/campaigns/{{ $('Webhook').first().json.body.data.campaignSlug }}\"\n  },\n  \"test\": false\n}",
-        "options": {}
+        "jsonBody": "={{ JSON.stringify({ variables: { firstName: $('Check Opt-in Consent').first().json.firstName, campaignUrl: $('Check Opt-in Consent').first().json.campaignUrl }, test: false }) }}",
+        "options": {
+          "maxTries": 5,
+          "waitBetweenTries": 1000
+        }
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [
-        960,
-        100
-      ],
-      "id": "01948b82-0001-7000-8000-000000000004",
+      "position": [1760, 120],
+      "id": "01948b82-0001-7000-8000-000000000009",
       "name": "Render Solace Intro",
       "credentials": {
         "httpHeaderAuth": {
@@ -156,46 +238,20 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "http://leads:8081/templates/street-team-prospect/render",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "httpHeaderAuth",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"variables\": {\n    \"firstName\": \"{{ $('Webhook').first().json.body.data.firstName }}\"\n  },\n  \"test\": false\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        960,
-        260
-      ],
-      "id": "01948b82-0001-7000-8000-000000000005",
-      "name": "Render Fallback Template",
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "cred_tidewave_automation",
-          "name": "Tidewave Automation"
-        }
-      }
-    },
-    {
-      "parameters": {
         "fromEmail": "hello@tidewave.test",
-        "toEmail": "={{ $('Webhook').first().json.body.data.email }}",
+        "toEmail": "={{ $('Check Opt-in Consent').first().json.email }}",
         "subject": "={{ $json.subject }}",
         "html": "={{ $json.html }}",
         "options": {}
       },
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
-      "position": [
-        1220,
-        180
-      ],
-      "id": "01948b82-0001-7000-8000-000000000006",
-      "name": "Send Intro Email",
+      "position": [1980, 120],
+      "id": "01948b82-0001-7000-8000-000000000010",
+      "name": "Send Solace Intro",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 1000,
       "credentials": {
         "smtp": {
           "id": "cred_mailpit_smtp",
@@ -205,20 +261,91 @@
     },
     {
       "parameters": {
+        "jsCode": "const state = $getWorkflowStaticData('global');\nstate.sentSolaceActions ||= {};\nconst actionKey = $('Normalize and Deduplicate').first().json.actionKey;\nstate.sentSolaceActions[actionKey] = new Date().toISOString();\nreturn [{ json: { sent: true, actionKey } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2200, 120],
+      "id": "01948b82-0001-7000-8000-000000000011",
+      "name": "Mark Opt-in Delivered"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, sent: true }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [2420, 120],
+      "id": "01948b82-0001-7000-8000-000000000012",
+      "name": "Respond Opt-in Sent"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, skipped: true, reason: 'consent_or_source' }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1760, 300],
+      "id": "01948b82-0001-7000-8000-000000000013",
+      "name": "Respond Opt-in Skipped"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ 'http://engine:8080/api/automation/payments/' + $('Normalize and Deduplicate').first().json.event.data.paymentId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpHeaderAuth",
+        "options": {
+          "maxTries": 5,
+          "waitBetweenTries": 1000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1320, 520],
+      "id": "01948b82-0001-7000-8000-000000000014",
+      "name": "Verify Payment With Provider",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "cred_tidewave_automation",
+          "name": "Tidewave Automation"
+        }
+      },
+      "notes": "Never use inbound status for confirmation; this API checks FakePay."
+    },
+    {
+      "parameters": {
+        "jsCode": "const payment = $input.first().json;\nconst email = payment.participant?.email || '';\nconst eligible = payment.verifiedWithProvider === true && payment.status === 'succeeded' && payment.campaign?.isOpen === true && email.toLowerCase().endsWith('.test');\nreturn [{ json: { eligible, id: payment.id, participant: payment.participant, amountText: payment.amountText, levelName: payment.level || 'Listener' } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1540, 520],
+      "id": "01948b82-0001-7000-8000-000000000015",
+      "name": "Check Verified Confirmation",
+      "notes": "Only provider-verified succeeded payments for open campaigns may be emailed."
+    },
+    {
+      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict"
+            "typeValidation": "strict",
+            "version": 2
           },
           "conditions": [
             {
-              "id": "c1",
-              "leftValue": "={{ $('Webhook').first().json.body.data.status }}",
-              "rightValue": "succeeded",
+              "id": "verified-succeeded",
+              "leftValue": "={{ $json.eligible }}",
+              "rightValue": true,
               "operator": {
-                "type": "string",
-                "operation": "equals"
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
               }
             }
           ],
@@ -228,12 +355,9 @@
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [
-        700,
-        440
-      ],
-      "id": "01948b82-0001-7000-8000-000000000007",
-      "name": "If Payment Succeeded"
+      "position": [1760, 520],
+      "id": "01948b82-0001-7000-8000-000000000016",
+      "name": "Confirmed With Provider"
     },
     {
       "parameters": {
@@ -243,17 +367,17 @@
         "nodeCredentialType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"variables\": {\n    \"paymentId\": \"{{ $('Webhook').first().json.body.data.paymentId }}\",\n    \"amountMinor\": \"{{ $('Webhook').first().json.body.data.amountMinor }}\",\n    \"currency\": \"{{ $('Webhook').first().json.body.data.currency }}\"\n  },\n  \"test\": false\n}",
-        "options": {}
+        "jsonBody": "={{ JSON.stringify({ variables: { firstName: $('Check Verified Confirmation').first().json.participant.firstName, amountText: $('Check Verified Confirmation').first().json.amountText, levelName: $('Check Verified Confirmation').first().json.levelName }, test: false }) }}",
+        "options": {
+          "maxTries": 5,
+          "waitBetweenTries": 1000
+        }
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [
-        960,
-        420
-      ],
-      "id": "01948b82-0001-7000-8000-000000000008",
-      "name": "Render Solace Confirmed",
+      "position": [1980, 460],
+      "id": "01948b82-0001-7000-8000-000000000017",
+      "name": "Render Confirmed Email",
       "credentials": {
         "httpHeaderAuth": {
           "id": "cred_tidewave_automation",
@@ -264,19 +388,19 @@
     {
       "parameters": {
         "fromEmail": "hello@tidewave.test",
-        "toEmail": "={{ $('Webhook').first().json.body.data.email || 'supporter@tidewave.test' }}",
+        "toEmail": "={{ $('Check Verified Confirmation').first().json.participant.email }}",
         "subject": "={{ $json.subject }}",
         "html": "={{ $json.html }}",
         "options": {}
       },
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
-      "position": [
-        1220,
-        420
-      ],
-      "id": "01948b82-0001-7000-8000-000000000009",
-      "name": "Send Confirmed Email",
+      "position": [2200, 460],
+      "id": "01948b82-0001-7000-8000-000000000018",
+      "name": "Send Verified Confirmation",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 1000,
       "credentials": {
         "smtp": {
           "id": "cred_mailpit_smtp",
@@ -286,133 +410,128 @@
     },
     {
       "parameters": {
+        "jsCode": "const state = $getWorkflowStaticData('global');\nstate.sentSolaceActions ||= {};\nconst actionKey = $('Normalize and Deduplicate').first().json.actionKey;\nstate.sentSolaceActions[actionKey] = new Date().toISOString();\nreturn [{ json: { sent: true, paymentId: $('Check Verified Confirmation').first().json.id, actionKey } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2420, 460],
+      "id": "01948b82-0001-7000-8000-000000000019",
+      "name": "Mark Confirmation Delivered"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://engine:8080/api/automation/activity",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ subjectType: 'participant', subjectId: $('Check Verified Confirmation').first().json.participant.id, type: 'email_sent', detail: 'Provider-verified payment confirmation' }) }}",
+        "options": {
+          "maxTries": 5,
+          "waitBetweenTries": 1000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2640, 460],
+      "id": "01948b82-0001-7000-8000-000000000020",
+      "name": "Record Confirmation Activity",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "cred_tidewave_automation",
+          "name": "Tidewave Automation"
+        }
+      }
+    },
+    {
+      "parameters": {
         "respondWith": "json",
-        "responseBody": "{\n  \"ok\": true\n}",
+        "responseBody": "={{ JSON.stringify({ ok: true, sent: true }) }}",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [
-        1460,
-        300
-      ],
-      "id": "01948b82-0001-7000-8000-000000000010",
-      "name": "Respond to Webhook"
+      "position": [2860, 460],
+      "id": "01948b82-0001-7000-8000-000000000021",
+      "name": "Respond Confirmation Sent"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, skipped: true, reason: 'payment_not_verified_succeeded' }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1980, 660],
+      "id": "01948b82-0001-7000-8000-000000000022",
+      "name": "Respond Payment Not Confirmed"
     }
   ],
   "connections": {
     "Webhook": {
+      "main": [[{ "node": "Verify Signed Event", "type": "main", "index": 0 }]]
+    },
+    "Verify Signed Event": {
+      "main": [[{ "node": "Normalize and Deduplicate", "type": "main", "index": 0 }]]
+    },
+    "Normalize and Deduplicate": {
+      "main": [[{ "node": "Already Sent", "type": "main", "index": 0 }]]
+    },
+    "Already Sent": {
       "main": [
-        [
-          {
-            "node": "Switch Event Type",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [{ "node": "Respond Duplicate", "type": "main", "index": 0 }],
+        [{ "node": "Route Event Type", "type": "main", "index": 0 }]
       ]
     },
-    "Switch Event Type": {
+    "Route Event Type": {
       "main": [
-        [
-          {
-            "node": "Route Source",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "If Payment Succeeded",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [{ "node": "Check Opt-in Consent", "type": "main", "index": 0 }],
+        [{ "node": "Verify Payment With Provider", "type": "main", "index": 0 }]
       ]
     },
-    "Route Source": {
+    "Check Opt-in Consent": {
+      "main": [[{ "node": "Eligible Opt-in", "type": "main", "index": 0 }]]
+    },
+    "Eligible Opt-in": {
       "main": [
-        [
-          {
-            "node": "Render Solace Intro",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Render Fallback Template",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [{ "node": "Render Solace Intro", "type": "main", "index": 0 }],
+        [{ "node": "Respond Opt-in Skipped", "type": "main", "index": 0 }]
       ]
     },
     "Render Solace Intro": {
+      "main": [[{ "node": "Send Solace Intro", "type": "main", "index": 0 }]]
+    },
+    "Send Solace Intro": {
+      "main": [[{ "node": "Mark Opt-in Delivered", "type": "main", "index": 0 }]]
+    },
+    "Mark Opt-in Delivered": {
+      "main": [[{ "node": "Respond Opt-in Sent", "type": "main", "index": 0 }]]
+    },
+    "Verify Payment With Provider": {
+      "main": [[{ "node": "Check Verified Confirmation", "type": "main", "index": 0 }]]
+    },
+    "Check Verified Confirmation": {
+      "main": [[{ "node": "Confirmed With Provider", "type": "main", "index": 0 }]]
+    },
+    "Confirmed With Provider": {
       "main": [
-        [
-          {
-            "node": "Send Intro Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [{ "node": "Render Confirmed Email", "type": "main", "index": 0 }],
+        [{ "node": "Respond Payment Not Confirmed", "type": "main", "index": 0 }]
       ]
     },
-    "Render Fallback Template": {
-      "main": [
-        [
-          {
-            "node": "Send Intro Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Render Confirmed Email": {
+      "main": [[{ "node": "Send Verified Confirmation", "type": "main", "index": 0 }]]
     },
-    "If Payment Succeeded": {
-      "main": [
-        [
-          {
-            "node": "Render Solace Confirmed",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Send Verified Confirmation": {
+      "main": [[{ "node": "Mark Confirmation Delivered", "type": "main", "index": 0 }]]
     },
-    "Render Solace Confirmed": {
-      "main": [
-        [
-          {
-            "node": "Send Confirmed Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Mark Confirmation Delivered": {
+      "main": [[{ "node": "Record Confirmation Activity", "type": "main", "index": 0 }]]
     },
-    "Send Intro Email": {
-      "main": [
-        [
-          {
-            "node": "Respond to Webhook",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Send Confirmed Email": {
-      "main": [
-        [
-          {
-            "node": "Respond to Webhook",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+    "Record Confirmation Activity": {
+      "main": [[{ "node": "Respond Confirmation Sent", "type": "main", "index": 0 }]]
     }
   },
   "settings": {

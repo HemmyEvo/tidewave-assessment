@@ -1,0 +1,86 @@
+{
+  "total": 3,
+  "unread": 3,
+  "count": 3,
+  "messages_count": 3,
+  "messages_unread": 3,
+  "start": 0,
+  "tags": [],
+  "messages": [
+    {
+      "ID": "2RQT31vueHUSYUHGlyfiVu",
+      "MessageID": "ae2b988d-c83d-96dd-9c01-ff5160c8bc55@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "qa-score70-1794065697041@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Tidewave Street Team - Next Steps",
+      "Created": "2026-11-07T15:35:02.727Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 1283,
+      "Attachments": 0,
+      "Snippet": "Hello QA, Thank you for submitting your application to the Tidewave Street Team. undefined Click here Thanks, Tidewave Team --- This email was sent automatically with n8n"
+    },
+    {
+      "ID": "5ji5ZkvTanFcjGk0uBr2Pi",
+      "MessageID": "51ae6b52-8c5a-82b9-6d61-fd096da68c10@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "QA-DUPE-1794065693992@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Tidewave Street Team - Next Steps",
+      "Created": "2026-11-07T15:35:02.718Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 1277,
+      "Attachments": 0,
+      "Snippet": "Hello QA, Thank you for submitting your application to the Tidewave Street Team. undefined Click here Thanks, Tidewave Team --- This email was sent automatically with n8n"
+    },
+    {
+      "ID": "71XlGtz9cxX4qcYt4zXCPQ",
+      "MessageID": "ed66adf5-100e-deb1-647f-71052ba71edf@tidewave.test",
+      "Read": false,
+      "From": {
+        "Name": "",
+        "Address": "hello@tidewave.test"
+      },
+      "To": [
+        {
+          "Name": "",
+          "Address": "qa-dupe-1794065693992@tidewave.test"
+        }
+      ],
+      "Cc": null,
+      "Bcc": null,
+      "ReplyTo": [],
+      "Subject": "Tidewave Street Team - Next Steps",
+      "Created": "2026-11-07T15:35:02.684Z",
+      "Username": "",
+      "Tags": [],
+      "Size": 1277,
+      "Attachments": 0,
+      "Snippet": "Hello QA, Thank you for submitting your application to the Tidewave Street Team. undefined Click here Thanks, Tidewave Team --- This email was sent automatically with n8n"
+    }
+  ]
+}
